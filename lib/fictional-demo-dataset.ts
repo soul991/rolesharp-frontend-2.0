@@ -103,6 +103,26 @@ export interface DemoNotification {
   actionHref?: string;
 }
 
+export interface VerifiedEvidenceMetric {
+  metric: string;
+  context: string;
+}
+
+export const AVERY_VERIFIED_METRICS: VerifiedEvidenceMetric[] = [
+  { metric: "12% Activation Lift", context: "Fieldnote onboarding release experiment" },
+  { metric: "24 Customer Interviews", context: "Trial-to-paid hesitation research" },
+  { metric: "100% P0 Delivery", context: "Engineering sprint commitments met on time" },
+  { metric: "45,000 MAU Telemetry", context: "Northbridge Labs funnel drop-off analysis" },
+  { metric: "8% Week-4 Retention Gain", context: "Growth engineering squad cohort optimization" },
+  { metric: "5 Years SaaS PM Experience", context: "Verified product lifecycle tenure" },
+  { metric: "14 Days TTFV Reduction", context: "Onboarding workflow consolidation experiment" },
+  { metric: "94 ATS Parse Score", context: "Canonical Master Product Resume benchmark" },
+  { metric: "38 Relational SQL Models", context: "Daily user telemetry dashboard queries" },
+  { metric: "18 PRDs & Specifications", context: "Cross-functional feature delivery documentation" },
+  { metric: "Zero PII Telemetry Leaks", context: "Strict compliance with privacy standards" },
+  { metric: "2 Major Platform Releases", context: "Multi-tier web platform launch leadership" },
+];
+
 export const AVERY_CHEN_USER: DemoUser = {
   id: "user-avery-chen-2026",
   name: "Avery Chen",

@@ -42,8 +42,8 @@ export default function RedesignSettingsPage() {
                 <Sparkles size={20} />
               </div>
               <div>
-                <h2 className="text-base font-bold font-display">Active Subscription Plan</h2>
-                <p className="text-xs text-slate-400">Fixed-term verified demo license</p>
+                <h2 className="text-base font-bold font-display">Active Access Pass</h2>
+                <p className="text-xs text-slate-400">Fixed-term verified demo license (no recurring subscription)</p>
               </div>
             </div>
             <span className="text-xs font-mono font-bold px-3 py-1 rounded-full bg-amber-500/10 text-amber-500 border border-amber-500/20">

@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { WorkspaceLayout } from "@/components/redesign/WorkspaceLayout";
 import { useRedesignStore } from "@/lib/redesign-store";
+import { AVERY_VERIFIED_METRICS } from "@/lib/fictional-demo-dataset";
 import {
   User,
   ShieldCheck,
@@ -29,21 +30,6 @@ export default function RedesignProfilePage() {
       setShowSkillInput(false);
     }
   };
-
-  const VERIFIED_METRICS = [
-    { metric: "12% Activation Lift", context: "Fieldnote onboarding release experiment" },
-    { metric: "24 Customer Interviews", context: "Trial-to-paid hesitation research" },
-    { metric: "100% P0 Delivery", context: "Engineering sprint commitments met on time" },
-    { metric: "45,000 MAU Telemetry", context: "Northbridge Labs funnel drop-off analysis" },
-    { metric: "8% Week-4 Retention Gain", context: "Growth engineering squad cohort optimization" },
-    { metric: "5 Years SaaS PM Experience", context: "Verified product lifecycle tenure" },
-    { metric: "14 Days TTFV Reduction", context: "Onboarding workflow consolidation experiment" },
-    { metric: "94 ATS Parse Score", context: "Canonical Master Product Resume benchmark" },
-    { metric: "38 Relational SQL Models", context: "Daily user telemetry dashboard queries" },
-    { metric: "18 PRDs & Specifications", context: "Cross-functional feature delivery documentation" },
-    { metric: "Zero PII Telemetry Leaks", context: "Strict compliance with privacy standards" },
-    { metric: "2 Major Platform Releases", context: "Multi-tier web platform launch leadership" },
-  ];
 
   return (
     <WorkspaceLayout>
@@ -102,7 +88,7 @@ export default function RedesignProfilePage() {
               Verified Impact Metrics (Grounded Evidence)
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-              {VERIFIED_METRICS.map((item, idx) => (
+              {AVERY_VERIFIED_METRICS.map((item, idx) => (
                 <div
                   key={idx}
                   className={`p-3.5 rounded-xl border text-xs space-y-1 ${

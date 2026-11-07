@@ -416,12 +416,16 @@ export default function RedesignLandingPage() {
                   Full Candidate Suite
                 </span>
                 <span className="text-xs font-mono px-2.5 py-0.5 rounded bg-blue-500/10 text-blue-500 font-bold">
-                  Fixed Term
+                  $29 • 30 Days
                 </span>
               </div>
-              <h3 className="text-2xl font-bold font-display mb-2">Premium Pass</h3>
+              <div className="flex items-baseline gap-2 mb-2">
+                <h3 className="text-2xl font-bold font-display">Premium Pass</h3>
+                <span className="text-xl font-bold font-mono text-blue-500">$29</span>
+                <span className="text-xs text-slate-400">/ 30-day term</span>
+              </div>
               <p className={`text-xs mb-6 ${isLight ? "text-slate-600" : "text-slate-400"}`}>
-                Complete access pass with verified tailoring credits and unlimited exports.
+                Complete access pass with verified tailoring credits and unlimited exports. Zero auto-renewal.
               </p>
               <ul className="space-y-3 text-xs mb-8">
                 <li className="flex items-center gap-2">

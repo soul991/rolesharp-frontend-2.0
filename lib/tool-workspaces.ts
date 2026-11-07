@@ -11,3 +11,16 @@ export function toolWorkspaceForPath(path: string) {
   const pathname = path.split(/[?#]/u)[0].replace(/\/$/u, "") || "/";
   return TOOL_WORKSPACES.find((workspace) => workspace.paths.some((route) => pathname === route || pathname.startsWith(`${route}/`)));
 }
+
+export const CANONICAL_WORKSPACE_ALIASES: Record<string, string> = {
+  resume: "resume-studio",
+  fit: "jobs-fit",
+  linkedin: "linkedin",
+  letters: "letters",
+  interview: "interview-practice",
+  offers: "salary-offers",
+};
+
+export function resolveWorkspaceSlug(slugOrId: string): string {
+  return CANONICAL_WORKSPACE_ALIASES[slugOrId] || slugOrId;
+}

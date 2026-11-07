@@ -4,6 +4,7 @@ import { use } from "react";
 import Link from "next/link";
 import { WorkspaceLayout } from "@/components/redesign/WorkspaceLayout";
 import { useRedesignStore } from "@/lib/redesign-store";
+import { resolveWorkspaceSlug } from "@/lib/tool-workspaces";
 import {
   FileText,
   Briefcase,
@@ -133,20 +134,13 @@ const DETAILS: Record<string, WorkspaceDetail> = {
   },
 };
 
-const ALIASES: Record<string, string> = {
-  resume: "resume-studio",
-  fit: "jobs-fit",
-  interview: "interview-practice",
-  offers: "salary-offers",
-};
-
 export default function RedesignWorkspaceDetailPage({
   params,
 }: {
   params: Promise<{ workspaceId: string }>;
 }) {
   const resolvedParams = use(params);
-  const targetId = ALIASES[resolvedParams.workspaceId] || resolvedParams.workspaceId;
+  const targetId = resolveWorkspaceSlug(resolvedParams.workspaceId);
   const detail = DETAILS[targetId];
   const { theme } = useRedesignStore();
   const isLight = theme === "light";

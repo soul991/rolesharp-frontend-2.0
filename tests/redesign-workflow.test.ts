@@ -5,8 +5,14 @@ import {
   AVERY_RESUMES,
   AVERY_APPLICATIONS,
   AVERY_JOB_MATCHES,
+  AVERY_VERIFIED_METRICS,
 } from "../lib/fictional-demo-dataset";
-import { TOOL_WORKSPACES, toolWorkspaceForPath } from "../lib/tool-workspaces";
+import {
+  TOOL_WORKSPACES,
+  toolWorkspaceForPath,
+  CANONICAL_WORKSPACE_ALIASES,
+  resolveWorkspaceSlug,
+} from "../lib/tool-workspaces";
 
 test("Avery Chen demo dataset conforms to canonical specification", () => {
   assert.equal(AVERY_CHEN_USER.name, "Avery Chen");
@@ -36,7 +42,24 @@ test("Avery Chen demo dataset conforms to canonical specification", () => {
   assert.equal(interviewApp.matchScore, 91);
 });
 
-test("Commit 17c50e4 tool workspaces define the six canonical task suites", () => {
+test("Avery Chen verified evidence metrics anchor exactly 12 candidate facts", () => {
+  assert.equal(AVERY_VERIFIED_METRICS.length, 12);
+  for (const item of AVERY_VERIFIED_METRICS) {
+    assert.ok(item.metric && item.metric.length > 0, "Metric title must be non-empty");
+    assert.ok(item.context && item.context.length > 0, "Metric context must be non-empty");
+  }
+});
+
+test("Applications Tracker dynamic ATS score lookup maintains valid link to resume library", () => {
+  for (const app of AVERY_APPLICATIONS) {
+    const linkedResume = AVERY_RESUMES.find((r) => r.id === app.resumeVersionId);
+    assert.ok(linkedResume, `Linked resume ${app.resumeVersionId} must exist for application ${app.id}`);
+    assert.equal(typeof linkedResume.atsScore, "number");
+    assert.ok(linkedResume.atsScore >= 70 && linkedResume.atsScore <= 100);
+  }
+});
+
+test("Commit 17c50e4 tool workspaces define the six canonical task suites and route aliases", () => {
   assert.equal(TOOL_WORKSPACES.length, 6);
   const ids = TOOL_WORKSPACES.map((w) => w.id);
   assert.deepEqual(ids, ["resume", "fit", "linkedin", "letters", "interview", "offers"]);
@@ -49,6 +72,17 @@ test("Commit 17c50e4 tool workspaces define the six canonical task suites", () =
   assert.equal(toolWorkspaceForPath("/cover-letter-generator")?.id, "letters");
   assert.equal(toolWorkspaceForPath("/interview-prep")?.id, "interview");
   assert.equal(toolWorkspaceForPath("/salaries")?.id, "offers");
+
+  // Canonical workspace alias resolution
+  assert.equal(CANONICAL_WORKSPACE_ALIASES["resume"], "resume-studio");
+  assert.equal(CANONICAL_WORKSPACE_ALIASES["fit"], "jobs-fit");
+  assert.equal(CANONICAL_WORKSPACE_ALIASES["interview"], "interview-practice");
+  assert.equal(CANONICAL_WORKSPACE_ALIASES["offers"], "salary-offers");
+
+  assert.equal(resolveWorkspaceSlug("resume"), "resume-studio");
+  assert.equal(resolveWorkspaceSlug("fit"), "jobs-fit");
+  assert.equal(resolveWorkspaceSlug("resume-studio"), "resume-studio");
+  assert.equal(resolveWorkspaceSlug("jobs-fit"), "jobs-fit");
 });
 
 test("Curated Job Matches provide transparent percentage weighting and honest gaps", () => {
