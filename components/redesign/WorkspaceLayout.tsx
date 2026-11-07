@@ -56,7 +56,7 @@ export function WorkspaceLayout({ children }: { children: ReactNode }) {
   return (
     <div
       className={`min-h-screen flex flex-col lg:flex-row transition-colors duration-200 ${
-        isLight ? "bg-[#F3F2EE] text-[#10243E]" : "bg-[#05080F] text-[#F3F4F6]"
+        isLight ? "bg-[#F3F2EE] text-[#10243E]" : "bg-[#061426] text-[#EFF5FF]"
       }`}
     >
       {/* =========================================================================
@@ -65,23 +65,25 @@ export function WorkspaceLayout({ children }: { children: ReactNode }) {
       <aside
         className={`hidden lg:flex flex-col w-64 shrink-0 border-r transition-colors duration-200 sticky top-0 h-screen ${
           isLight
-            ? "bg-[#FAF9F6] border-[#E5E3DC] text-[#10243E]"
-            : "bg-[#0A1220] border-[#182334] text-white"
+            ? "bg-[#FBFAF9] border-[#E5DFD5] text-[#10243E]"
+            : "bg-[#0A182C] border-[#182C44] text-[#F4F7FB]"
         }`}
       >
         {/* Brand Lockup */}
         <div className="p-4 border-b border-inherit flex items-center justify-between">
-          <Link href="/redesign/dashboard" className="flex items-center gap-2 group">
-            <div className="w-8 h-8 rounded-lg overflow-hidden flex items-center justify-center bg-blue-600/10 border border-blue-500/20 group-hover:scale-105 transition-transform">
+          <Link href="/redesign/dashboard" className="flex items-center gap-2.5 group">
+            <div className={`w-8 h-8 rounded-lg overflow-hidden flex items-center justify-center border shadow-sm group-hover:scale-105 transition-transform ${
+              isLight ? "bg-[#123B7A]/5 border-[#123B7A]/20" : "bg-[#132A4A] border-[#234168]"
+            }`}>
               <RoleSharpMark />
             </div>
-            <span className="font-bold text-lg tracking-tight font-display">
-              <span className="text-blue-500">R</span>ole<span className="text-blue-400">Sharp</span>
+            <span className="font-bold text-lg tracking-tight" style={{ fontFamily: "var(--font-display)" }}>
+              <span className={isLight ? "text-[#123B7A]" : "text-[#5B9BFF]"}>R</span>ole<span className={isLight ? "text-[#3B82F6]" : "text-[#9FC3F2]"}>Sharp</span>
             </span>
           </Link>
           <span
             className={`text-[10px] font-mono px-2 py-0.5 rounded uppercase tracking-wider font-semibold ${
-              isLight ? "bg-slate-200/80 text-slate-700" : "bg-blue-950 text-blue-300 border border-blue-800/40"
+              isLight ? "bg-[#EFECE6] text-[#52647A] border border-[#DCD6CA]" : "bg-[#132A4A] text-[#9FC3F2] border border-[#234168]"
             }`}
           >
             v2.0
@@ -89,25 +91,45 @@ export function WorkspaceLayout({ children }: { children: ReactNode }) {
         </div>
 
         {/* Candidate User Card (Avery Chen) */}
-        <div className="p-3 mx-3 my-3 rounded-xl border border-inherit bg-blue-500/5">
+        <div
+          className="p-3 mx-3 my-3 rounded-xl border transition-all"
+          style={{
+            background: isLight ? "#F3F0EB" : "#0E2138",
+            borderColor: isLight ? "#E2DDD4" : "#1B3654",
+          }}
+        >
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-full bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-white font-bold text-sm shadow-sm shrink-0">
+            <div
+              className="w-9 h-9 rounded-lg flex items-center justify-center font-bold text-xs tracking-wider shadow-sm shrink-0"
+              style={{
+                background: isLight ? "#123B7A" : "#9FC3F2",
+                color: isLight ? "#FFFFFF" : "#071A33",
+              }}
+            >
               AC
             </div>
             <div className="min-w-0 flex-1">
-              <p className="text-sm font-semibold truncate leading-tight">{user.name}</p>
-              <p className={`text-xs truncate ${isLight ? "text-slate-500" : "text-slate-400"}`}>
+              <p className="text-sm font-semibold truncate leading-tight tracking-tight" style={{ fontFamily: "var(--font-display)" }}>
+                {user.name}
+              </p>
+              <p className={`text-[11px] truncate mt-0.5 ${isLight ? "text-[#52647A]" : "text-[#9FB0C7]"}`}>
                 {user.targetTitle}
               </p>
             </div>
           </div>
           <div className="mt-2.5 pt-2 border-t border-inherit flex items-center justify-between text-xs">
-            <span className={`flex items-center gap-1 ${isLight ? "text-slate-500" : "text-slate-400"}`}>
-              <Sparkles size={12} className="text-amber-500" />
-              Credits
+            <span className={`flex items-center gap-1.5 text-[11px] ${isLight ? "text-[#52647A]" : "text-[#9FB0C7]"}`}>
+              <Sparkles size={12} className="text-[#F59E0B]" />
+              <span>Generation Pass</span>
             </span>
-            <span className="font-mono font-semibold text-blue-500">
-              {user.creditsRemaining} remaining
+            <span
+              className="font-mono text-[10px] font-semibold px-2 py-0.5 rounded"
+              style={{
+                background: isLight ? "#E2DDD4" : "#163150",
+                color: isLight ? "#123B7A" : "#9FC3F2",
+              }}
+            >
+              {user.creditsRemaining} credits
             </span>
           </div>
         </div>
@@ -115,8 +137,8 @@ export function WorkspaceLayout({ children }: { children: ReactNode }) {
         {/* Labeled Primary Destinations */}
         <nav className="flex-1 px-3 space-y-1 overflow-y-auto" aria-label="Primary Navigation">
           <p
-            className={`px-3 py-1.5 text-[11px] font-mono uppercase tracking-wider font-semibold ${
-              isLight ? "text-slate-600" : "text-slate-300"
+            className={`px-3 py-1.5 text-[10px] font-mono uppercase tracking-wider font-semibold ${
+              isLight ? "text-[#6B7280]" : "text-[#9FB0C7]"
             }`}
           >
             Workspace
@@ -131,11 +153,11 @@ export function WorkspaceLayout({ children }: { children: ReactNode }) {
                 className={`flex items-center justify-between px-3 py-2 rounded-lg text-sm font-medium transition-all group ${
                   active
                     ? isLight
-                      ? "bg-blue-600 text-white shadow-sm font-semibold"
-                      : "bg-blue-600/20 text-blue-300 border border-blue-500/30 font-semibold"
+                      ? "bg-[#EAF2FF] text-[#123B7A] font-semibold shadow-sm border-l-3 border-[#123B7A]"
+                      : "bg-[#112642] text-[#9FC3F2] font-semibold border-l-3 border-[#5B9BFF]"
                     : isLight
-                    ? "text-slate-600 hover:text-slate-900 hover:bg-slate-200/50"
-                    : "text-slate-400 hover:text-slate-100 hover:bg-slate-800/50"
+                    ? "text-[#52647A] hover:text-[#10243E] hover:bg-[#F0ECE6]"
+                    : "text-[#9FB0C7] hover:text-[#F4F7FB] hover:bg-[#0E2138]"
                 }`}
               >
                 <div className="flex items-center gap-2.5 min-w-0">
@@ -144,25 +166,25 @@ export function WorkspaceLayout({ children }: { children: ReactNode }) {
                     className={
                       active
                         ? isLight
-                          ? "text-white"
-                          : "text-blue-400"
+                          ? "text-[#123B7A]"
+                          : "text-[#5B9BFF]"
                         : isLight
-                        ? "text-slate-500 group-hover:text-slate-700"
-                        : "text-slate-400 group-hover:text-slate-200"
+                        ? "text-[#64748B] group-hover:text-[#10243E]"
+                        : "text-[#718299] group-hover:text-[#F4F7FB]"
                     }
                   />
                   <span className="truncate">{item.label}</span>
                 </div>
                 {item.badge && (
                   <span
-                    className={`text-[11px] font-mono px-1.5 py-0.5 rounded font-medium ${
+                    className={`text-[10px] font-mono px-1.5 py-0.5 rounded font-medium ${
                       active
                         ? isLight
-                          ? "bg-blue-700 text-white"
-                          : "bg-blue-900 text-blue-200"
+                          ? "bg-[#123B7A]/10 text-[#123B7A] font-semibold"
+                          : "bg-[#5B9BFF]/20 text-[#9FC3F2]"
                         : isLight
-                        ? "bg-slate-200 text-slate-700"
-                        : "bg-slate-800 text-slate-300"
+                        ? "bg-[#EFECE6] text-[#52647A]"
+                        : "bg-[#132A4A] text-[#9FB0C7]"
                     }`}
                   >
                     {item.badge}
@@ -180,8 +202,8 @@ export function WorkspaceLayout({ children }: { children: ReactNode }) {
             onClick={toggleTheme}
             className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs font-medium transition-colors ${
               isLight
-                ? "text-slate-600 hover:bg-slate-100 hover:text-slate-900"
-                : "text-slate-400 hover:bg-slate-800 hover:text-slate-100"
+                ? "text-[#52647A] hover:bg-[#F0ECE6] hover:text-[#10243E]"
+                : "text-[#9FB0C7] hover:bg-[#0E2138] hover:text-[#F4F7FB]"
             }`}
           >
             <span className="flex items-center gap-2">
@@ -199,8 +221,8 @@ export function WorkspaceLayout({ children }: { children: ReactNode }) {
             title="Reset demo data to baseline"
             className={`w-full flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-medium transition-colors ${
               isLight
-                ? "text-slate-500 hover:bg-slate-100 hover:text-slate-800"
-                : "text-slate-400 hover:bg-slate-800 hover:text-slate-200"
+                ? "text-[#52647A] hover:bg-[#F0ECE6] hover:text-[#10243E]"
+                : "text-[#9FB0C7] hover:bg-[#0E2138] hover:text-[#F4F7FB]"
             }`}
           >
             <RotateCcw size={14} />
@@ -227,22 +249,24 @@ export function WorkspaceLayout({ children }: { children: ReactNode }) {
           ========================================================================= */}
       <header
         className={`lg:hidden sticky top-0 z-40 w-full border-b flex items-center justify-between px-4 h-14 ${
-          isLight ? "bg-[#FAF9F6] border-[#E5E3DC]" : "bg-[#0A1220] border-[#182334]"
+          isLight ? "bg-[#FBFAF9] border-[#E5DFD5]" : "bg-[#0A182C] border-[#182C44]"
         }`}
       >
         <Link href="/redesign/dashboard" className="flex items-center gap-2">
-          <div className="w-7 h-7 rounded-lg overflow-hidden flex items-center justify-center bg-blue-600/10 border border-blue-500/20">
+          <div className={`w-7 h-7 rounded-lg overflow-hidden flex items-center justify-center border shadow-sm ${
+            isLight ? "bg-[#123B7A]/5 border-[#123B7A]/20" : "bg-[#132A4A] border-[#234168]"
+          }`}>
             <RoleSharpMark />
           </div>
-          <span className="font-bold text-base tracking-tight font-display">
-            <span className="text-blue-500">R</span>oleSharp
+          <span className="font-bold text-base tracking-tight" style={{ fontFamily: "var(--font-display)" }}>
+            <span className={isLight ? "text-[#123B7A]" : "text-[#5B9BFF]"}>R</span>ole<span className={isLight ? "text-[#3B82F6]" : "text-[#9FC3F2]"}>Sharp</span>
           </span>
         </Link>
 
         <div className="flex items-center gap-2">
           <span
             className={`text-[11px] font-mono px-2 py-0.5 rounded font-semibold ${
-              isLight ? "bg-blue-100 text-blue-800" : "bg-blue-950 text-blue-300"
+              isLight ? "bg-[#EFECE6] text-[#123B7A] border border-[#DCD6CA]" : "bg-[#132A4A] text-[#9FC3F2] border border-[#234168]"
             }`}
           >
             {user.creditsRemaining} credits
@@ -250,7 +274,7 @@ export function WorkspaceLayout({ children }: { children: ReactNode }) {
           <button
             onClick={toggleTheme}
             className={`p-1.5 rounded-lg border ${
-              isLight ? "border-slate-200 text-slate-700" : "border-slate-800 text-slate-300"
+              isLight ? "border-[#E5DFD5] text-[#52647A]" : "border-[#182C44] text-[#9FB0C7]"
             }`}
             aria-label="Toggle theme"
           >
@@ -259,7 +283,7 @@ export function WorkspaceLayout({ children }: { children: ReactNode }) {
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className={`p-1.5 rounded-lg border ${
-              isLight ? "border-slate-200 text-slate-700" : "border-slate-800 text-slate-300"
+              isLight ? "border-[#E5DFD5] text-[#52647A]" : "border-[#182C44] text-[#9FB0C7]"
             }`}
             aria-label="Open mobile menu"
           >
@@ -278,23 +302,29 @@ export function WorkspaceLayout({ children }: { children: ReactNode }) {
         >
           <div
             className={`w-full max-h-[85vh] overflow-y-auto rounded-t-2xl p-5 border-t ${
-              isLight ? "bg-[#FAF9F6] border-[#E5E3DC]" : "bg-[#0A1220] border-[#182334]"
+              isLight ? "bg-[#FBFAF9] border-[#E5DFD5]" : "bg-[#0A182C] border-[#182C44]"
             }`}
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between pb-4 border-b border-inherit">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-blue-600 text-white font-bold flex items-center justify-center">
+                <div
+                  className="w-10 h-10 rounded-lg flex items-center justify-center font-bold text-sm tracking-wider shadow-sm"
+                  style={{
+                    background: isLight ? "#123B7A" : "#9FC3F2",
+                    color: isLight ? "#FFFFFF" : "#071A33",
+                  }}
+                >
                   AC
                 </div>
                 <div>
-                  <p className="font-bold text-sm">{user.name}</p>
-                  <p className="text-xs text-slate-400">{user.targetTitle}</p>
+                  <p className="font-bold text-sm tracking-tight" style={{ fontFamily: "var(--font-display)" }}>{user.name}</p>
+                  <p className={`text-xs ${isLight ? "text-[#52647A]" : "text-[#9FB0C7]"}`}>{user.targetTitle}</p>
                 </div>
               </div>
               <button
                 onClick={() => setMobileMenuOpen(false)}
-                className="p-1 rounded-lg text-slate-400 hover:text-white"
+                className={`p-1 rounded-lg ${isLight ? "text-[#52647A]" : "text-[#9FB0C7]"}`}
               >
                 <X size={20} />
               </button>
@@ -311,10 +341,12 @@ export function WorkspaceLayout({ children }: { children: ReactNode }) {
                     onClick={() => setMobileMenuOpen(false)}
                     className={`flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-medium ${
                       active
-                        ? "bg-blue-600 text-white font-semibold"
+                        ? isLight
+                          ? "bg-[#EAF2FF] text-[#123B7A] font-semibold border-l-3 border-[#123B7A]"
+                          : "bg-[#112642] text-[#9FC3F2] font-semibold border-l-3 border-[#5B9BFF]"
                         : isLight
-                        ? "text-slate-700 hover:bg-slate-100"
-                        : "text-slate-300 hover:bg-slate-800"
+                        ? "text-[#52647A] hover:bg-[#F0ECE6]"
+                        : "text-[#9FB0C7] hover:bg-[#0E2138]"
                     }`}
                   >
                     <div className="flex items-center gap-3">
