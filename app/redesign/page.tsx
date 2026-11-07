@@ -24,19 +24,28 @@ export default function RedesignLandingPage() {
   return (
     <div
       className={`min-h-screen transition-colors duration-200 ${
-        isLight ? "bg-[#F3F2EE] text-[#10243E]" : "bg-[#05080F] text-[#F3F4F6]"
+        isLight ? "bg-[#F3F2EE] text-[#10243E]" : "bg-[#061426] text-[#EFF5FF]"
       }`}
     >
       <PublicNav />
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden pt-12 pb-20 md:pt-16 md:pb-28 border-b border-inherit">
+      <section className="relative overflow-hidden pt-12 pb-20 md:pt-16 md:pb-28 border-b"
+        style={{ borderColor: isLight ? "#E5DFD5" : "#182C44" }}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             {/* Left Column: Headlines & Actions */}
             <div className="lg:col-span-7 space-y-6">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-semibold tracking-wide border border-blue-500/30 bg-blue-500/10 text-blue-400">
-                <Sparkles size={12} /> EVIDENCE-LED RESUME & CAREER WORKSPACE
+              <div
+                className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-semibold tracking-wide border"
+                style={{
+                  background: isLight ? "#E8EEF8" : "#132A4A",
+                  borderColor: isLight ? "#BFDBFE" : "#234168",
+                  color: isLight ? "#123B7A" : "#9FC3F2",
+                }}
+              >
+                <Sparkles size={12} /> EVIDENCE-LED RESUME &amp; CAREER WORKSPACE
               </div>
 
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight font-display leading-[1.12]">
@@ -45,7 +54,7 @@ export default function RedesignLandingPage() {
 
               <p
                 className={`text-lg sm:text-xl max-w-2xl leading-relaxed ${
-                  isLight ? "text-slate-600" : "text-slate-300"
+                  isLight ? "text-[#52647A]" : "text-[#9FB0C7]"
                 }`}
               >
                 Turn the work you have done into a resume that a hiring team can actually understand, verify, and remember. No inflated claims, no hallucinated bullet points.
@@ -54,19 +63,24 @@ export default function RedesignLandingPage() {
               <div className="flex flex-wrap items-center gap-4 pt-2">
                 <Link
                   href="/redesign/login"
-                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl text-base font-semibold bg-blue-600 text-white hover:bg-blue-500 transition-all shadow-md hover:shadow-blue-500/20 group"
+                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-lg text-base font-bold shadow-md transition-all hover:scale-[1.02] group"
+                  style={{
+                    background: isLight ? "#123B7A" : "#9FC3F2",
+                    color: isLight ? "#FFFFFF" : "#071A33",
+                  }}
                 >
-                  Enter Workspace as Demo Candidate
+                  <span>Enter Workspace as Demo Candidate</span>
                   <ArrowRight size={17} className="group-hover:translate-x-1 transition-transform" />
                 </Link>
 
                 <Link
                   href="/redesign/resumes"
-                  className={`inline-flex items-center gap-2 px-6 py-3.5 rounded-xl text-base font-semibold border transition-all ${
-                    isLight
-                      ? "border-slate-300 text-slate-800 hover:bg-white hover:border-slate-400"
-                      : "border-slate-700 text-slate-200 hover:bg-slate-800 hover:border-slate-600"
-                  }`}
+                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-lg text-base font-bold border transition-all hover:scale-[1.01]"
+                  style={{
+                    background: isLight ? "#FFFFFF" : "#112642",
+                    borderColor: isLight ? "#E5DFD5" : "#1B3654",
+                    color: isLight ? "#10243E" : "#EFF5FF",
+                  }}
                 >
                   Check my resume free
                 </Link>
@@ -74,15 +88,15 @@ export default function RedesignLandingPage() {
 
               <p
                 className={`text-xs font-mono tracking-tight flex items-center gap-2 ${
-                  isLight ? "text-slate-500" : "text-slate-400"
+                  isLight ? "text-[#52647A]" : "text-[#9FB0C7]"
                 }`}
               >
-                <ShieldCheck size={14} className="text-emerald-500" />
+                <ShieldCheck size={14} className="text-[#059669]" />
                 Start with a PDF, DOCX, or pasted text. No credit card required.
               </p>
 
               {/* Approved Animated Quote Component */}
-              <div className="pt-4 border-t border-inherit">
+              <div className="pt-4 border-t" style={{ borderColor: isLight ? "#E5DFD5" : "#182C44" }}>
                 <LandingQuote compact />
               </div>
             </div>
@@ -90,13 +104,16 @@ export default function RedesignLandingPage() {
             {/* Right Column: Live Evidence Review Stage */}
             <div className="lg:col-span-5">
               <div
-                className={`rounded-2xl border p-6 shadow-2xl relative transition-colors ${
-                  isLight
-                    ? "bg-[#FAF9F6] border-[#E2E0D8] text-[#10243E]"
-                    : "bg-[#0A1220] border-[#182334] text-white"
-                }`}
+                className="rounded-2xl border p-6 shadow-2xl relative transition-all"
+                style={{
+                  background: isLight ? "#FBFAF9" : "#0C213A",
+                  borderColor: isLight ? "#E5DFD5" : "#1B3654",
+                }}
               >
-                <div className="flex items-center justify-between pb-4 border-b border-inherit">
+                <div
+                  className="flex items-center justify-between pb-4 border-b"
+                  style={{ borderColor: isLight ? "#E5DFD5" : "#182C44" }}
+                >
                   <div className="flex items-center gap-2">
                     <FileSearch size={16} className="text-blue-500" />
                     <span className="text-xs font-mono font-bold uppercase tracking-wider">

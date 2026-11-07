@@ -181,22 +181,33 @@ export default function RedesignToolsPage() {
               <section
                 key={ws.id}
                 id={ws.id}
-                className={`rounded-2xl border p-6 transition-all ${
-                  isLight
-                    ? "bg-[#FAF9F6] border-[#E2E0D8]"
-                    : "bg-[#0A1220] border-[#182334]"
-                }`}
+                className="rounded-2xl border p-6 transition-all"
+                style={{
+                  background: isLight ? "#FBFAF9" : "#0C213A",
+                  borderColor: isLight ? "#E5DFD5" : "#1B3654",
+                }}
               >
                 {/* Workspace Header */}
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-inherit">
+                <div
+                  className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b"
+                  style={{ borderColor: isLight ? "#E5DFD5" : "#182C44" }}
+                >
                   <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-500 flex items-center justify-center shrink-0">
+                    <div
+                      className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0"
+                      style={{
+                        background: isLight ? "#E8EEF8" : "#132A4A",
+                        color: isLight ? "#123B7A" : "#9FC3F2",
+                      }}
+                    >
                       <Icon size={24} />
                     </div>
                     <div>
-                      <h2 className="text-xl font-bold font-display">{ws.title}</h2>
-                      <p className="text-xs font-semibold text-blue-500 mt-0.5">{ws.tagline}</p>
-                      <p className={`text-xs mt-1 max-w-xl ${isLight ? "text-slate-600" : "text-slate-400"}`}>
+                      <h2 className="text-xl font-bold font-display tracking-tight">{ws.title}</h2>
+                      <p className="text-xs font-semibold mt-0.5" style={{ color: isLight ? "#123B7A" : "#9FC3F2" }}>
+                        {ws.tagline}
+                      </p>
+                      <p className={`text-xs mt-1 max-w-xl ${isLight ? "text-[#52647A]" : "text-[#9FB0C7]"}`}>
                         {ws.desc}
                       </p>
                     </div>
@@ -204,7 +215,11 @@ export default function RedesignToolsPage() {
 
                   <Link
                     href={ws.primaryAction.href}
-                    className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-blue-600 text-white hover:bg-blue-500 transition-colors shadow-sm self-start sm:self-center"
+                    className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-lg text-xs font-bold shadow-md transition-all hover:scale-[1.02] self-start sm:self-center"
+                    style={{
+                      background: isLight ? "#123B7A" : "#9FC3F2",
+                      color: isLight ? "#FFFFFF" : "#071A33",
+                    }}
                   >
                     <span>{ws.primaryAction.label}</span>
                     <ArrowRight size={14} />
@@ -217,19 +232,19 @@ export default function RedesignToolsPage() {
                     <Link
                       key={tool.name}
                       href={tool.href}
-                      className={`p-3.5 rounded-xl border transition-all hover:scale-[1.01] group ${
-                        isLight
-                          ? "bg-white border-slate-200 hover:border-blue-400"
-                          : "bg-slate-900/40 border-slate-800/80 hover:border-blue-500/40"
-                      }`}
+                      className="p-3.5 rounded-xl border transition-all hover:scale-[1.01] group"
+                      style={{
+                        background: isLight ? "#FFFFFF" : "#112642",
+                        borderColor: isLight ? "#E5DFD5" : "#1B3654",
+                      }}
                     >
                       <div className="flex items-center justify-between mb-1">
                         <span className="text-xs font-bold font-display group-hover:text-blue-500 transition-colors">
                           {tool.name}
                         </span>
-                        <ExternalLink size={12} className="text-slate-400 group-hover:text-blue-400" />
+                        <ExternalLink size={12} className="opacity-50 group-hover:opacity-100" />
                       </div>
-                      <p className="text-[11px] text-slate-500 line-clamp-2 leading-relaxed">
+                      <p className={`text-[11px] line-clamp-2 leading-relaxed ${isLight ? "text-[#52647A]" : "text-[#9FB0C7]"}`}>
                         {tool.desc}
                       </p>
                     </Link>

@@ -173,21 +173,35 @@ export default function RedesignWorkspaceDetailPage({
 
         {/* Hero Card */}
         <div
-          className={`rounded-2xl border p-6 sm:p-8 transition-colors ${
-            isLight ? "bg-[#FAF9F6] border-[#E2E0D8]" : "bg-[#0A1220] border-[#182334]"
-          }`}
+          className="rounded-2xl border p-6 sm:p-8 transition-colors"
+          style={{
+            background: isLight ? "#FBFAF9" : "#0C213A",
+            borderColor: isLight ? "#E5DFD5" : "#1B3654",
+          }}
         >
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 pb-6 border-b border-inherit">
+          <div
+            className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 pb-6 border-b"
+            style={{ borderColor: isLight ? "#E5DFD5" : "#182C44" }}
+          >
             <div className="flex items-start gap-4">
-              <div className="w-14 h-14 rounded-2xl bg-blue-500/10 text-blue-500 flex items-center justify-center shrink-0">
+              <div
+                className="w-14 h-14 rounded-2xl flex items-center justify-center shrink-0"
+                style={{
+                  background: isLight ? "#E8EEF8" : "#132A4A",
+                  color: isLight ? "#123B7A" : "#9FC3F2",
+                }}
+              >
                 <Icon size={28} />
               </div>
               <div>
-                <span className="text-xs font-mono font-bold uppercase tracking-wider text-blue-500">
+                <span
+                  className="text-xs font-mono font-bold uppercase tracking-wider"
+                  style={{ color: isLight ? "#123B7A" : "#9FC3F2" }}
+                >
                   Task Workspace
                 </span>
-                <h1 className="text-2xl sm:text-3xl font-bold font-display">{detail.title}</h1>
-                <p className={`text-xs sm:text-sm mt-1 max-w-2xl ${isLight ? "text-slate-600" : "text-slate-400"}`}>
+                <h1 className="text-2xl sm:text-3xl font-bold font-display tracking-tight">{detail.title}</h1>
+                <p className={`text-xs sm:text-sm mt-1 max-w-2xl ${isLight ? "text-[#52647A]" : "text-[#9FB0C7]"}`}>
                   {detail.desc}
                 </p>
               </div>
@@ -195,7 +209,11 @@ export default function RedesignWorkspaceDetailPage({
 
             <Link
               href={detail.primaryAction.href}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold bg-blue-600 text-white hover:bg-blue-500 transition-colors shadow-sm self-start sm:self-center shrink-0"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-bold shadow-md transition-all hover:scale-[1.02] self-start sm:self-center shrink-0"
+              style={{
+                background: isLight ? "#123B7A" : "#9FC3F2",
+                color: isLight ? "#FFFFFF" : "#071A33",
+              }}
             >
               <span>{detail.primaryAction.label}</span>
               <ArrowRight size={15} />
@@ -204,18 +222,20 @@ export default function RedesignWorkspaceDetailPage({
 
           {/* Key Capabilities */}
           <div className="mt-6">
-            <h2 className="text-xs font-mono font-bold uppercase tracking-wider text-slate-400 mb-3">
+            <h2 className="text-xs font-mono font-bold uppercase tracking-wider opacity-75 mb-3">
               Core Capabilities
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
               {detail.features.map((feature, i) => (
                 <div
                   key={i}
-                  className={`p-3.5 rounded-xl border text-xs leading-relaxed flex items-start gap-2 ${
-                    isLight ? "bg-white border-slate-200" : "bg-slate-900/40 border-slate-800"
-                  }`}
+                  className="p-3.5 rounded-xl border text-xs leading-relaxed flex items-start gap-2 transition-colors"
+                  style={{
+                    background: isLight ? "#FFFFFF" : "#112642",
+                    borderColor: isLight ? "#E5DFD5" : "#1B3654",
+                  }}
                 >
-                  <CheckCircle2 size={15} className="text-blue-500 shrink-0 mt-0.5" />
+                  <CheckCircle2 size={15} className="text-[#059669] shrink-0 mt-0.5" />
                   <span>{feature}</span>
                 </div>
               ))}
@@ -225,28 +245,37 @@ export default function RedesignWorkspaceDetailPage({
 
         {/* Tools in this Workspace */}
         <div className="space-y-4">
-          <h2 className="text-lg font-bold font-display">Specialized Tools &amp; Utilities</h2>
+          <h2 className="text-lg font-bold font-display tracking-tight">Specialized Tools &amp; Utilities</h2>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             {detail.tools.map((t) => (
               <Link
                 key={t.name}
                 href={t.href}
-                className={`p-4 rounded-xl border transition-all hover:scale-[1.01] group ${
-                  isLight
-                    ? "bg-[#FAF9F6] border-[#E2E0D8] hover:border-blue-400"
-                    : "bg-[#0A1220] border-[#182334] hover:border-blue-500/40"
-                }`}
+                className="p-4 rounded-xl border transition-all hover:scale-[1.01] group"
+                style={{
+                  background: isLight ? "#FBFAF9" : "#0C213A",
+                  borderColor: isLight ? "#E5DFD5" : "#1B3654",
+                }}
               >
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-sm font-bold font-display group-hover:text-blue-500 transition-colors">
                     {t.name}
                   </span>
-                  <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-blue-500/10 text-blue-400 font-semibold">
+                  <span
+                    className="text-[10px] font-mono px-2 py-0.5 rounded font-semibold"
+                    style={{
+                      background: isLight ? "#E8EEF8" : "#163150",
+                      color: isLight ? "#123B7A" : "#9FC3F2",
+                    }}
+                  >
                     {t.status}
                   </span>
                 </div>
-                <p className="text-xs text-slate-500 leading-relaxed mb-3">{t.desc}</p>
-                <span className="text-xs font-semibold text-blue-500 flex items-center gap-1 group-hover:translate-x-0.5 transition-transform">
+                <p className={`text-xs leading-relaxed mb-3 ${isLight ? "text-[#52647A]" : "text-[#9FB0C7]"}`}>{t.desc}</p>
+                <span
+                  className="text-xs font-semibold flex items-center gap-1 group-hover:translate-x-0.5 transition-transform"
+                  style={{ color: isLight ? "#123B7A" : "#9FC3F2" }}
+                >
                   Launch Tool <ArrowRight size={13} />
                 </span>
               </Link>

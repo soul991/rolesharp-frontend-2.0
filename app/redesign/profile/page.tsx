@@ -57,25 +57,42 @@ export default function RedesignProfilePage() {
 
         {/* Profile Card */}
         <div
-          className={`rounded-2xl border p-6 sm:p-8 transition-colors ${
-            isLight ? "bg-[#FAF9F6] border-[#E2E0D8]" : "bg-[#0A1220] border-[#182334]"
-          }`}
+          className="rounded-2xl border p-6 sm:p-8 transition-colors"
+          style={{
+            background: isLight ? "#FBFAF9" : "#0C213A",
+            borderColor: isLight ? "#E5DFD5" : "#1B3654",
+          }}
         >
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 pb-6 border-b border-inherit">
+          <div
+            className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 pb-6 border-b"
+            style={{ borderColor: isLight ? "#E5DFD5" : "#182C44" }}
+          >
             <div className="flex items-center gap-4">
-              <div className="w-16 h-16 rounded-2xl bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-white font-bold text-2xl shadow-md">
+              <div
+                className="w-16 h-16 rounded-2xl flex items-center justify-center font-bold text-2xl shadow-md shrink-0"
+                style={{
+                  background: isLight ? "#123B7A" : "#9FC3F2",
+                  color: isLight ? "#FFFFFF" : "#071A33",
+                }}
+              >
                 AC
               </div>
               <div>
-                <h2 className="text-xl font-bold font-display">{user.name}</h2>
-                <p className="text-xs text-blue-500 font-semibold">{user.email}</p>
-                <p className="text-xs text-slate-400">{user.location} • {user.yearsOfExperience} Years Experience</p>
+                <h2 className="text-xl font-bold font-display tracking-tight">{user.name}</h2>
+                <p className="text-xs font-semibold" style={{ color: isLight ? "#123B7A" : "#9FC3F2" }}>{user.email}</p>
+                <p className={`text-xs mt-0.5 ${isLight ? "text-[#52647A]" : "text-[#9FB0C7]"}`}>
+                  {user.location} • {user.yearsOfExperience} Years Experience
+                </p>
               </div>
             </div>
 
             <Link
               href="/redesign/resumes"
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-blue-600 text-white hover:bg-blue-500 transition-colors shadow-sm self-start sm:self-center"
+              className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-lg text-xs font-bold shadow-md transition-all hover:scale-[1.02] self-start sm:self-center"
+              style={{
+                background: isLight ? "#123B7A" : "#9FC3F2",
+                color: isLight ? "#FFFFFF" : "#071A33",
+              }}
             >
               <span>Open Master Resume</span>
               <ArrowRight size={14} />
@@ -84,21 +101,23 @@ export default function RedesignProfilePage() {
 
           {/* 12 Verified Impact Metrics Grid */}
           <div className="mt-6">
-            <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-slate-400 mb-3">
+            <h3 className="text-xs font-mono font-bold uppercase tracking-wider opacity-75 mb-3">
               Verified Impact Metrics (Grounded Evidence)
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
               {AVERY_VERIFIED_METRICS.map((item, idx) => (
                 <div
                   key={idx}
-                  className={`p-3.5 rounded-xl border text-xs space-y-1 ${
-                    isLight ? "bg-white border-slate-200" : "bg-slate-900/40 border-slate-800"
-                  }`}
+                  className="p-3.5 rounded-xl border text-xs space-y-1 transition-colors"
+                  style={{
+                    background: isLight ? "#FFFFFF" : "#112642",
+                    borderColor: isLight ? "#E5DFD5" : "#1B3654",
+                  }}
                 >
-                  <div className="flex items-center gap-1.5 text-emerald-500 font-bold font-mono">
+                  <div className="flex items-center gap-1.5 text-[#059669] font-bold font-mono">
                     <CheckCircle2 size={13} /> {item.metric}
                   </div>
-                  <p className="text-slate-500 text-[11px] leading-tight">{item.context}</p>
+                  <p className={`text-[11px] leading-tight ${isLight ? "text-[#52647A]" : "text-[#9FB0C7]"}`}>{item.context}</p>
                 </div>
               ))}
             </div>

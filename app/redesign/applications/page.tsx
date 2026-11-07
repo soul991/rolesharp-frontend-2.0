@@ -56,24 +56,30 @@ export default function RedesignApplicationsPage() {
           </div>
 
           {/* View Mode Toggle */}
-          <div className="flex items-center gap-2 border border-inherit rounded-xl p-1 bg-slate-500/5 self-start sm:self-center">
+          <div
+            className="flex items-center gap-1 border rounded-lg p-1 transition-colors self-start sm:self-center"
+            style={{
+              background: isLight ? "#F3F0EB" : "#0E2138",
+              borderColor: isLight ? "#E5DFD5" : "#1B3654",
+            }}
+          >
             <button
               onClick={() => setViewMode("kanban")}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
-                viewMode === "kanban"
-                  ? "bg-blue-600 text-white font-semibold shadow-sm"
-                  : "text-slate-400 hover:text-inherit"
-              }`}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-bold transition-all"
+              style={{
+                background: viewMode === "kanban" ? (isLight ? "#123B7A" : "#9FC3F2") : "transparent",
+                color: viewMode === "kanban" ? (isLight ? "#FFFFFF" : "#071A33") : (isLight ? "#52647A" : "#9FB0C7"),
+              }}
             >
               <LayoutGrid size={14} /> Kanban Board
             </button>
             <button
               onClick={() => setViewMode("table")}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
-                viewMode === "table"
-                  ? "bg-blue-600 text-white font-semibold shadow-sm"
-                  : "text-slate-400 hover:text-inherit"
-              }`}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-bold transition-all"
+              style={{
+                background: viewMode === "table" ? (isLight ? "#123B7A" : "#9FC3F2") : "transparent",
+                color: viewMode === "table" ? (isLight ? "#FFFFFF" : "#071A33") : (isLight ? "#52647A" : "#9FB0C7"),
+              }}
             >
               <TableIcon size={14} /> Accessible Table
             </button>
@@ -90,15 +96,25 @@ export default function RedesignApplicationsPage() {
               return (
                 <div
                   key={stage}
-                  className={`rounded-xl border p-3 flex flex-col gap-3 min-w-[220px] transition-colors ${
-                    isLight ? "bg-[#FAF9F6] border-[#E2E0D8]" : "bg-[#0A1220] border-[#182334]"
-                  }`}
+                  className="rounded-xl border p-3 flex flex-col gap-3 min-w-[220px] transition-colors"
+                  style={{
+                    background: isLight ? "#FBFAF9" : "#0C213A",
+                    borderColor: isLight ? "#E5DFD5" : "#1B3654",
+                  }}
                 >
-                  <div className="flex items-center justify-between pb-2 border-b border-inherit">
-                    <span className="text-xs font-mono font-bold uppercase tracking-wider text-slate-400">
+                  <div className="flex items-center justify-between pb-2 border-b"
+                    style={{ borderColor: isLight ? "#E5DFD5" : "#182C44" }}
+                  >
+                    <span className="text-xs font-mono font-bold uppercase tracking-wider opacity-75">
                       {stage}
                     </span>
-                    <span className="text-[11px] font-mono px-1.5 py-0.5 rounded bg-blue-500/10 text-blue-400 font-bold">
+                    <span
+                      className="text-[11px] font-mono px-2 py-0.5 rounded font-bold"
+                      style={{
+                        background: isLight ? "#E8EEF8" : "#163150",
+                        color: isLight ? "#123B7A" : "#9FC3F2",
+                      }}
+                    >
                       {stageApps.length}
                     </span>
                   </div>
@@ -108,26 +124,28 @@ export default function RedesignApplicationsPage() {
                       <div
                         key={app.id}
                         onClick={() => setSelectedApp(app)}
-                        className={`p-3.5 rounded-xl border cursor-pointer transition-all hover:scale-[1.02] hover:shadow-md ${
-                          selectedApp?.id === app.id
-                            ? "ring-2 ring-blue-500 border-blue-500"
-                            : isLight
-                            ? "bg-white border-slate-200"
-                            : "bg-slate-900/60 border-slate-800"
-                        }`}
+                        className="p-3.5 rounded-xl border cursor-pointer transition-all hover:scale-[1.02] hover:shadow-md"
+                        style={{
+                          background: selectedApp?.id === app.id
+                            ? isLight ? "#EAF2FF" : "#132A4A"
+                            : isLight ? "#FFFFFF" : "#112642",
+                          borderColor: selectedApp?.id === app.id
+                            ? isLight ? "#123B7A" : "#5B9BFF"
+                            : isLight ? "#E5DFD5" : "#1B3654",
+                        }}
                       >
                         <div className="flex items-center justify-between gap-2 mb-1">
                           <span className="font-bold text-xs truncate">{app.companyName}</span>
-                          <span className="text-[10px] font-mono font-bold text-emerald-500">
+                          <span className="text-[10px] font-mono font-bold text-[#059669]">
                             {app.matchScore}%
                           </span>
                         </div>
 
-                        <p className="text-xs text-blue-500 font-medium truncate mb-2">
+                        <p className="text-xs font-medium truncate mb-2" style={{ color: isLight ? "#123B7A" : "#9FC3F2" }}>
                           {app.roleTitle}
                         </p>
 
-                        <div className="space-y-1 text-[11px] text-slate-400">
+                        <div className={`space-y-1 text-[11px] ${isLight ? "text-[#52647A]" : "text-[#9FB0C7]"}`}>
                           <p className="flex items-center gap-1">
                             <Clock size={11} /> Due: {app.followUpDue}
                           </p>
@@ -137,7 +155,9 @@ export default function RedesignApplicationsPage() {
                         </div>
 
                         {app.stage === "interview" && (
-                          <div className="mt-2 pt-2 border-t border-inherit flex items-center gap-1 text-[10px] font-bold text-amber-500">
+                          <div className="mt-2 pt-2 border-t flex items-center gap-1 text-[10px] font-bold text-[#F59E0B]"
+                            style={{ borderColor: isLight ? "#E5DFD5" : "#182C44" }}
+                          >
                             <Calendar size={11} /> Interview: Nov 10 @ 2:00 PM
                           </div>
                         )}
@@ -153,13 +173,17 @@ export default function RedesignApplicationsPage() {
               ACCESSIBLE SEMANTIC TABLE VIEW (Section 4 & 8)
               ========================================================================= */
           <div
-            className={`rounded-2xl border overflow-x-auto transition-colors ${
-              isLight ? "bg-[#FAF9F6] border-[#E2E0D8]" : "bg-[#0A1220] border-[#182334]"
-            }`}
+            className="rounded-2xl border overflow-x-auto transition-colors"
+            style={{
+              background: isLight ? "#FBFAF9" : "#0C213A",
+              borderColor: isLight ? "#E5DFD5" : "#1B3654",
+            }}
           >
             <table className="w-full text-left border-collapse text-xs">
               <thead>
-                <tr className="border-b border-inherit font-mono uppercase tracking-wider text-slate-400">
+                <tr className="border-b font-mono uppercase tracking-wider opacity-75"
+                  style={{ borderColor: isLight ? "#E5DFD5" : "#182C44" }}
+                >
                   <th scope="col" className="p-4">Company &amp; Role</th>
                   <th scope="col" className="p-4">Pipeline Stage</th>
                   <th scope="col" className="p-4">Match Score</th>
@@ -168,7 +192,7 @@ export default function RedesignApplicationsPage() {
                   <th scope="col" className="p-4 text-right">Actions</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-inherit">
+              <tbody className="divide-y" style={{ borderColor: isLight ? "#E5DFD5" : "#182C44" }}>
                 {applications.map((app) => (
                   <tr
                     key={app.id}
@@ -177,7 +201,7 @@ export default function RedesignApplicationsPage() {
                   >
                     <td className="p-4">
                       <div className="font-bold text-sm text-inherit">{app.companyName}</div>
-                      <div className="text-blue-500 font-medium mt-0.5">
+                      <div className="font-medium mt-0.5" style={{ color: isLight ? "#123B7A" : "#9FC3F2" }}>
                         {app.roleTitle} • {app.location}
                       </div>
                     </td>
@@ -234,27 +258,33 @@ export default function RedesignApplicationsPage() {
             onClick={() => setSelectedApp(null)}
           >
             <div
-              className={`w-full max-w-lg h-full overflow-y-auto p-6 sm:p-8 border-l space-y-6 ${
-                isLight ? "bg-[#FAF9F6] border-[#E2E0D8]" : "bg-[#0A1220] border-[#182334]"
-              }`}
+              className="w-full max-w-lg h-full overflow-y-auto p-6 sm:p-8 border-l space-y-6 shadow-2xl transition-all"
+              style={{
+                background: isLight ? "#FBFAF9" : "#0C213A",
+                borderColor: isLight ? "#E5DFD5" : "#1B3654",
+              }}
               onClick={(e) => e.stopPropagation()}
             >
               {/* Header */}
-              <div className="flex items-start justify-between pb-4 border-b border-inherit">
+              <div className="flex items-start justify-between pb-4 border-b"
+                style={{ borderColor: isLight ? "#E5DFD5" : "#182C44" }}
+              >
                 <div>
-                  <span className="text-xs font-mono font-bold uppercase tracking-wider text-blue-500">
+                  <span className="text-xs font-mono font-bold uppercase tracking-wider"
+                    style={{ color: isLight ? "#123B7A" : "#9FC3F2" }}
+                  >
                     Application Dossier
                   </span>
-                  <h2 className="text-2xl font-bold font-display mt-0.5">
+                  <h2 className="text-2xl font-bold font-display mt-0.5 tracking-tight">
                     {selectedApp.companyName}
                   </h2>
-                  <p className="text-xs text-slate-400 mt-1">
+                  <p className={`text-xs mt-1 ${isLight ? "text-[#52647A]" : "text-[#9FB0C7]"}`}>
                     {selectedApp.roleTitle} • {selectedApp.location}
                   </p>
                 </div>
                 <button
                   onClick={() => setSelectedApp(null)}
-                  className="p-1.5 rounded-lg text-slate-400 hover:text-white"
+                  className="p-1.5 rounded-lg opacity-60 hover:opacity-100"
                 >
                   <X size={20} />
                 </button>
@@ -262,7 +292,7 @@ export default function RedesignApplicationsPage() {
 
               {/* Stage Modifier */}
               <div>
-                <label className="block text-xs font-mono font-bold uppercase tracking-wider text-slate-400 mb-2">
+                <label className="block text-xs font-mono font-bold uppercase tracking-wider opacity-75 mb-2">
                   Pipeline Stage
                 </label>
                 <div className="grid grid-cols-3 gap-2">
@@ -273,13 +303,18 @@ export default function RedesignApplicationsPage() {
                         updateApplicationStage(selectedApp.id, s);
                         setSelectedApp({ ...selectedApp, stage: s });
                       }}
-                      className={`px-3 py-1.5 rounded-lg text-xs font-mono uppercase font-bold border transition-all ${
-                        selectedApp.stage === s
-                          ? "bg-blue-600 text-white border-blue-500"
-                          : isLight
-                          ? "bg-white border-slate-200 text-slate-700"
-                          : "bg-slate-900 border-slate-800 text-slate-400"
-                      }`}
+                      className="px-3 py-1.5 rounded-lg text-xs font-mono uppercase font-bold border transition-all"
+                      style={{
+                        background: selectedApp.stage === s
+                          ? isLight ? "#123B7A" : "#9FC3F2"
+                          : isLight ? "#FFFFFF" : "#112642",
+                        borderColor: selectedApp.stage === s
+                          ? isLight ? "#123B7A" : "#5B9BFF"
+                          : isLight ? "#E5DFD5" : "#1B3654",
+                        color: selectedApp.stage === s
+                          ? isLight ? "#FFFFFF" : "#071A33"
+                          : isLight ? "#52647A" : "#9FB0C7",
+                      }}
                     >
                       {s}
                     </button>
@@ -288,27 +323,33 @@ export default function RedesignApplicationsPage() {
               </div>
 
               {/* Key Metrics */}
-              <div className="grid grid-cols-2 gap-3 p-4 rounded-xl border border-inherit bg-slate-500/5 text-xs">
+              <div
+                className="grid grid-cols-2 gap-3 p-4 rounded-xl border text-xs"
+                style={{
+                  background: isLight ? "#F3F0EB" : "#112642",
+                  borderColor: isLight ? "#E5DFD5" : "#1B3654",
+                }}
+              >
                 <div>
-                  <span className="text-slate-400">Match Compatibility</span>
-                  <p className="font-mono font-bold text-base text-emerald-500">
+                  <span className={isLight ? "text-[#52647A]" : "text-[#9FB0C7]"}>Match Compatibility</span>
+                  <p className="font-mono font-bold text-base text-[#059669]">
                     {selectedApp.matchScore}%
                   </p>
                 </div>
                 <div>
-                  <span className="text-slate-400">Salary Band</span>
+                  <span className={isLight ? "text-[#52647A]" : "text-[#9FB0C7]"}>Salary Band</span>
                   <p className="font-mono font-bold text-base text-inherit">
                     {selectedApp.salaryRange}
                   </p>
                 </div>
                 <div>
-                  <span className="text-slate-400">Follow-up Due</span>
+                  <span className={isLight ? "text-[#52647A]" : "text-[#9FB0C7]"}>Follow-up Due</span>
                   <p className="font-mono font-semibold text-inherit">
                     {selectedApp.followUpDue}
                   </p>
                 </div>
                 <div>
-                  <span className="text-slate-400">Application Date</span>
+                  <span className={isLight ? "text-[#52647A]" : "text-[#9FB0C7]"}>Application Date</span>
                   <p className="font-mono font-semibold text-inherit">
                     {selectedApp.appliedDate || "In Preparation"}
                   </p>
@@ -316,27 +357,37 @@ export default function RedesignApplicationsPage() {
               </div>
 
               {/* Linked Resume Version */}
-              <div className="p-4 rounded-xl border border-inherit space-y-2">
+              <div
+                className="p-4 rounded-xl border space-y-2"
+                style={{
+                  background: isLight ? "#FFFFFF" : "#112642",
+                  borderColor: isLight ? "#E5DFD5" : "#1B3654",
+                }}
+              >
                 <div className="flex items-center justify-between text-xs">
-                  <span className="font-mono font-bold uppercase tracking-wider text-slate-400">
+                  <span className="font-mono font-bold uppercase tracking-wider opacity-75">
                     Linked Resume Version
                   </span>
-                  <span className="text-emerald-500 font-bold font-mono">
+                  <span className="text-[#059669] font-bold font-mono">
                     {resumes.find((r) => r.id === selectedApp.resumeVersionId)?.atsScore ?? selectedApp.matchScore} ATS
                   </span>
                 </div>
-                <p className="font-bold text-sm text-blue-500">{selectedApp.resumeVersionId}</p>
+                <p className="font-bold text-sm" style={{ color: isLight ? "#123B7A" : "#9FC3F2" }}>
+                  {selectedApp.resumeVersionId}
+                </p>
                 <Link
                   href="/redesign/resumes"
-                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-400 hover:text-blue-300 pt-1"
+                  className="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline pt-1"
+                  style={{ color: isLight ? "#123B7A" : "#5B9BFF" }}
                 >
-                  Open in Resume Studio Canvas <ArrowRight size={13} />
+                  <span>Open in Resume Studio Canvas</span>
+                  <ArrowRight size={13} />
                 </Link>
               </div>
 
               {/* Notes Editor */}
               <div>
-                <label className="block text-xs font-mono font-bold uppercase tracking-wider text-slate-400 mb-1.5">
+                <label className="block text-xs font-mono font-bold uppercase tracking-wider opacity-75 mb-1.5">
                   Interview &amp; Strategy Notes
                 </label>
                 <textarea
@@ -347,27 +398,35 @@ export default function RedesignApplicationsPage() {
                     setSelectedApp({ ...selectedApp, notes: newNotes });
                     updateApplicationNotes(selectedApp.id, newNotes);
                   }}
-                  className={`w-full p-3 rounded-xl border text-xs focus:outline-none focus:ring-2 focus:ring-blue-500 leading-relaxed ${
-                    isLight
-                      ? "bg-white border-slate-300 text-slate-900"
-                      : "bg-slate-900 border-slate-800 text-white"
-                  }`}
+                  className="w-full p-3 rounded-xl border text-xs focus:outline-none focus:ring-2 focus:ring-blue-500 leading-relaxed"
+                  style={{
+                    background: isLight ? "#FFFFFF" : "#0E2138",
+                    borderColor: isLight ? "#E5DFD5" : "#1B3654",
+                    color: isLight ? "#10243E" : "#EFF5FF",
+                  }}
                 />
               </div>
 
               {/* Actions */}
-              <div className="pt-4 border-t border-inherit flex items-center justify-between">
+              <div className="pt-4 border-t flex items-center justify-between"
+                style={{ borderColor: isLight ? "#E5DFD5" : "#182C44" }}
+              >
                 <button
                   onClick={() => setSelectedApp(null)}
-                  className="px-4 py-2 rounded-xl text-xs font-semibold text-slate-400 hover:text-white"
+                  className={`px-4 py-2 rounded-xl text-xs font-semibold ${isLight ? "text-[#52647A] hover:text-[#10243E]" : "text-[#9FB0C7] hover:text-white"}`}
                 >
                   Close Dossier
                 </button>
                 <Link
                   href="/redesign/review"
-                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-blue-600 text-white font-semibold text-xs hover:bg-blue-500"
+                  className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-lg font-bold text-xs shadow-md transition-all hover:scale-[1.02]"
+                  style={{
+                    background: isLight ? "#123B7A" : "#9FC3F2",
+                    color: isLight ? "#FFFFFF" : "#071A33",
+                  }}
                 >
-                  Re-tailor for Role <ArrowRight size={13} />
+                  <span>Re-tailor for Role</span>
+                  <ArrowRight size={14} />
                 </Link>
               </div>
             </div>

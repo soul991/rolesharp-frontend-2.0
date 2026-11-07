@@ -136,11 +136,11 @@ export default function RedesignReviewGatePage() {
 
         {/* Check Answers Table Pattern */}
         <div
-          className={`rounded-2xl border divide-y transition-colors overflow-hidden ${
-            isLight
-              ? "bg-[#FAF9F6] border-[#E2E0D8] divide-[#E2E0D8]"
-              : "bg-[#0A1220] border-[#182334] divide-[#182334]"
-          }`}
+          className="rounded-2xl border divide-y transition-colors overflow-hidden"
+          style={{
+            background: isLight ? "#FBFAF9" : "#0C213A",
+            borderColor: isLight ? "#E5DFD5" : "#1B3654",
+          }}
         >
           {/* Target Role & Company */}
           <div className="p-5 flex flex-col sm:flex-row sm:items-baseline justify-between gap-4">
@@ -303,16 +303,28 @@ export default function RedesignReviewGatePage() {
           </div>
 
           {/* Credit Cost & Action Bar */}
-          <div className="p-6 bg-blue-500/5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div
+            className="p-6 border-t flex flex-col sm:flex-row sm:items-center justify-between gap-4"
+            style={{
+              borderColor: isLight ? "#E5DFD5" : "#182C44",
+              background: isLight ? "#F3F0EB" : "#0A182C",
+            }}
+          >
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-blue-500/10 text-blue-500 flex items-center justify-center font-bold">
+              <div
+                className="w-10 h-10 rounded-xl flex items-center justify-center font-bold font-mono"
+                style={{
+                  background: isLight ? "#E8EEF8" : "#132A4A",
+                  color: isLight ? "#123B7A" : "#9FC3F2",
+                }}
+              >
                 1
               </div>
               <div>
                 <p className="text-xs font-bold uppercase tracking-wider font-mono">
                   Generation Cost: 1 Credit
                 </p>
-                <p className="text-xs text-slate-500">
+                <p className={`text-xs ${isLight ? "text-[#52647A]" : "text-[#9FB0C7]"}`}>
                   {user.creditsRemaining} credits available in Avery Chen&apos;s Premium account.
                 </p>
               </div>
@@ -321,7 +333,11 @@ export default function RedesignReviewGatePage() {
             <button
               onClick={handleStartGeneration}
               disabled={isGenerating || user.creditsRemaining <= 0}
-              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-blue-600 text-white font-semibold text-sm hover:bg-blue-500 transition-all shadow-md hover:shadow-blue-500/25 disabled:opacity-50"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-bold text-sm shadow-md transition-all hover:scale-[1.02] active:scale-[0.99] disabled:opacity-50"
+              style={{
+                background: isLight ? "#123B7A" : "#9FC3F2",
+                color: isLight ? "#FFFFFF" : "#071A33",
+              }}
             >
               <Sparkles size={16} />
               <span>Confirm &amp; Run Tailored Generation</span>
@@ -333,16 +349,24 @@ export default function RedesignReviewGatePage() {
         {isGenerating && (
           <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
             <div
-              className={`w-full max-w-md rounded-2xl border p-6 shadow-2xl space-y-6 ${
-                isLight ? "bg-[#FAF9F6] border-[#E2E0D8]" : "bg-[#0A1220] border-[#182334]"
-              }`}
+              className="w-full max-w-md rounded-2xl border p-6 shadow-2xl space-y-6"
+              style={{
+                background: isLight ? "#FBFAF9" : "#0C213A",
+                borderColor: isLight ? "#E5DFD5" : "#1B3654",
+              }}
             >
               <div className="text-center space-y-2">
-                <div className="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-500 flex items-center justify-center mx-auto">
+                <div
+                  className="w-12 h-12 rounded-xl flex items-center justify-center mx-auto"
+                  style={{
+                    background: isLight ? "#E8EEF8" : "#132A4A",
+                    color: isLight ? "#123B7A" : "#9FC3F2",
+                  }}
+                >
                   <Loader2 size={24} className="animate-spin" />
                 </div>
                 <h3 className="text-lg font-bold font-display">Synthesizing Tailored Resume</h3>
-                <p className="text-xs text-slate-400">
+                <p className={`text-xs ${isLight ? "text-[#52647A]" : "text-[#9FB0C7]"}`}>
                   Target: {targetRole} @ {targetCompany}
                 </p>
               </div>
@@ -356,9 +380,9 @@ export default function RedesignReviewGatePage() {
                 ].map((item) => (
                   <div key={item.step} className="flex items-center gap-3">
                     {genStep > item.step ? (
-                      <CheckCircle2 size={16} className="text-emerald-500 shrink-0" />
+                      <CheckCircle2 size={16} className="text-[#059669] shrink-0" />
                     ) : genStep === item.step ? (
-                      <Loader2 size={16} className="text-blue-500 animate-spin shrink-0" />
+                      <Loader2 size={16} className="text-[#5B9BFF] animate-spin shrink-0" />
                     ) : (
                       <div className="w-4 h-4 rounded-full border border-slate-600 shrink-0" />
                     )}
@@ -366,7 +390,9 @@ export default function RedesignReviewGatePage() {
                       className={
                         genStep >= item.step
                           ? "font-medium text-inherit"
-                          : "text-slate-500"
+                          : isLight
+                          ? "text-[#52647A]"
+                          : "text-[#9FB0C7]"
                       }
                     >
                       {item.text}
@@ -382,55 +408,69 @@ export default function RedesignReviewGatePage() {
         {isDone && (
           <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
             <div
-              className={`w-full max-w-lg rounded-2xl border p-8 shadow-2xl space-y-6 text-center ${
-                isLight ? "bg-[#FAF9F6] border-[#E2E0D8]" : "bg-[#0A1220] border-[#182334]"
-              }`}
+              className="w-full max-w-lg rounded-2xl border p-8 shadow-2xl space-y-6 text-center"
+              style={{
+                background: isLight ? "#FBFAF9" : "#0C213A",
+                borderColor: isLight ? "#E5DFD5" : "#1B3654",
+              }}
             >
-              <div className="w-16 h-16 rounded-2xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center mx-auto">
+              <div className="w-16 h-16 rounded-2xl bg-emerald-500/10 text-[#059669] flex items-center justify-center mx-auto">
                 <CheckCircle2 size={32} />
               </div>
 
               <div className="space-y-1">
-                <span className="text-xs font-mono font-bold uppercase tracking-wider text-emerald-500">
+                <span className="text-xs font-mono font-bold uppercase tracking-wider text-[#059669]">
                   Tailored Generation Verified
                 </span>
                 <h3 className="text-2xl font-bold font-display">Resume Successfully Tailored!</h3>
-                <p className="text-xs text-slate-400 max-w-sm mx-auto">
-                  Resume tailored for <span className="font-semibold text-white">{targetRole} @ {targetCompany}</span> with 88% ATS score and transparent Kafka telemetry notation.
+                <p className={`text-xs max-w-sm mx-auto ${isLight ? "text-[#52647A]" : "text-[#9FB0C7]"}`}>
+                  Resume tailored for <span className="font-semibold text-inherit">{targetRole} @ {targetCompany}</span> with 88% ATS score and transparent Kafka telemetry notation.
                 </p>
               </div>
 
-              <div className="p-4 rounded-xl border border-inherit bg-slate-500/5 flex items-center justify-around text-xs">
+              <div
+                className="p-4 rounded-xl border flex items-center justify-around text-xs"
+                style={{
+                  background: isLight ? "#F3F0EB" : "#112642",
+                  borderColor: isLight ? "#E5DFD5" : "#1B3654",
+                }}
+              >
                 <div>
-                  <span className="text-slate-400">ATS Readiness</span>
-                  <p className="font-mono font-bold text-base text-blue-500">88%</p>
+                  <span className={isLight ? "text-[#52647A]" : "text-[#9FB0C7]"}>ATS Readiness</span>
+                  <p className="font-mono font-bold text-base" style={{ color: isLight ? "#123B7A" : "#9FC3F2" }}>88%</p>
                 </div>
                 <div className="w-px h-8 bg-inherit" />
                 <div>
-                  <span className="text-slate-400">Credits Left</span>
-                  <p className="font-mono font-bold text-base text-amber-500">
+                  <span className={isLight ? "text-[#52647A]" : "text-[#9FB0C7]"}>Credits Left</span>
+                  <p className="font-mono font-bold text-base text-[#F59E0B]">
                     {user.creditsRemaining}
                   </p>
                 </div>
                 <div className="w-px h-8 bg-inherit" />
                 <div>
-                  <span className="text-slate-400">Target Match</span>
-                  <p className="font-mono font-bold text-base text-emerald-500">High</p>
+                  <span className={isLight ? "text-[#52647A]" : "text-[#9FB0C7]"}>Target Match</span>
+                  <p className="font-mono font-bold text-base text-[#059669]">High</p>
                 </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
                 <Link
                   href="/redesign/resumes"
-                  className="py-2.5 rounded-xl border border-inherit font-semibold text-xs hover:bg-slate-500/10 transition-colors"
+                  className="py-2.5 rounded-xl border font-semibold text-xs hover:bg-slate-500/10 transition-colors"
+                  style={{ borderColor: isLight ? "#E5DFD5" : "#182C44" }}
                 >
                   View Saved in Studio
                 </Link>
                 <Link
                   href="/redesign/applications"
-                  className="py-2.5 rounded-xl bg-blue-600 text-white font-semibold text-xs hover:bg-blue-500 transition-colors shadow-sm flex items-center justify-center gap-1.5"
+                  className="py-2.5 rounded-xl font-bold text-xs shadow-md transition-all hover:scale-[1.02] flex items-center justify-center gap-1.5"
+                  style={{
+                    background: isLight ? "#123B7A" : "#9FC3F2",
+                    color: isLight ? "#FFFFFF" : "#071A33",
+                  }}
                 >
-                  Open Linked Application <ArrowRight size={14} />
+                  <span>Open Linked Application</span>
+                  <ArrowRight size={14} />
                 </Link>
               </div>
             </div>

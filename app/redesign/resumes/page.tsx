@@ -75,7 +75,11 @@ export default function RedesignResumesPage() {
           <div className="flex items-center gap-3">
             <Link
               href="/redesign/review"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-blue-600 text-white hover:bg-blue-500 transition-colors shadow-sm"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-bold shadow-md transition-all hover:scale-[1.02]"
+              style={{
+                background: isLight ? "#123B7A" : "#9FC3F2",
+                color: isLight ? "#FFFFFF" : "#071A33",
+              }}
             >
               <Sparkles size={15} /> Tailor for Role &amp; Review Gate
             </Link>
@@ -83,32 +87,48 @@ export default function RedesignResumesPage() {
         </div>
 
         {/* Resume Selector Tabs */}
-        <div className="flex items-center gap-2 overflow-x-auto pb-2 border-b border-inherit">
+        <div className="flex items-center gap-2 overflow-x-auto pb-2 border-b"
+          style={{ borderColor: isLight ? "#E5DFD5" : "#182C44" }}
+        >
           {resumes.map((r) => {
             const isSelected = r.id === activeResume.id;
             return (
               <button
                 key={r.id}
                 onClick={() => setActiveResumeId(r.id)}
-                className={`flex items-center gap-2.5 px-3.5 py-2 rounded-xl text-xs font-medium whitespace-nowrap border transition-all ${
-                  isSelected
+                className="flex items-center gap-2.5 px-3.5 py-2 rounded-xl text-xs font-medium whitespace-nowrap border transition-all"
+                style={{
+                  background: isSelected
                     ? isLight
-                      ? "bg-white border-blue-500 text-blue-600 shadow-sm font-bold"
-                      : "bg-blue-950/40 border-blue-500 text-blue-300 font-bold"
+                      ? "#FFFFFF"
+                      : "#132A4A"
                     : isLight
-                    ? "bg-[#FAF9F6] border-slate-200 text-slate-600 hover:border-slate-300"
-                    : "bg-[#0A1220] border-slate-800 text-slate-400 hover:border-slate-700"
-                }`}
+                    ? "#FAF9F6"
+                    : "#0C213A",
+                  borderColor: isSelected
+                    ? isLight
+                      ? "#123B7A"
+                      : "#5B9BFF"
+                    : isLight
+                    ? "#E5DFD5"
+                    : "#1B3654",
+                  color: isSelected
+                    ? isLight
+                      ? "#123B7A"
+                      : "#9FC3F2"
+                    : isLight
+                    ? "#52647A"
+                    : "#9FB0C7",
+                  fontWeight: isSelected ? 700 : 500,
+                }}
               >
                 <span className="truncate max-w-[200px]">{r.title}</span>
                 <span
-                  className={`text-[10px] font-mono px-1.5 py-0.5 rounded font-bold ${
-                    r.atsScore >= 90
-                      ? "bg-emerald-500/10 text-emerald-500"
-                      : r.atsScore >= 80
-                      ? "bg-blue-500/10 text-blue-400"
-                      : "bg-amber-500/10 text-amber-500"
-                  }`}
+                  className="text-[10px] font-mono px-1.5 py-0.5 rounded font-bold"
+                  style={{
+                    background: r.atsScore >= 90 ? "rgba(5, 150, 105, 0.15)" : "rgba(59, 130, 246, 0.15)",
+                    color: r.atsScore >= 90 ? "#059669" : "#3B82F6",
+                  }}
                 >
                   {r.atsScore} ATS
                 </span>
@@ -120,15 +140,16 @@ export default function RedesignResumesPage() {
         {/* Honest Gap Notice (If Tailored) */}
         {activeResume.honestGap && (
           <div
-            className={`p-4 rounded-xl border flex items-start gap-3 transition-colors ${
-              isLight
-                ? "bg-amber-50/80 border-amber-300 text-amber-950"
-                : "bg-amber-950/20 border-amber-500/40 text-amber-200"
-            }`}
+            className="p-4 rounded-xl border flex items-start gap-3 transition-colors"
+            style={{
+              background: isLight ? "#FFF7ED" : "#1B221E",
+              borderColor: isLight ? "#F59E0B" : "#B45309",
+              color: isLight ? "#78350F" : "#FDE68A",
+            }}
           >
-            <AlertTriangle size={18} className="text-amber-500 shrink-0 mt-0.5" />
+            <AlertTriangle size={18} className="text-[#F59E0B] shrink-0 mt-0.5" />
             <div className="text-xs space-y-1">
-              <span className="font-bold font-mono uppercase tracking-wider text-amber-500">
+              <span className="font-bold font-mono uppercase tracking-wider text-[#F59E0B]">
                 Transparent Unsupported Skill Gap: {activeResume.honestGap.requiredSkill}
               </span>
               <p className="leading-relaxed opacity-90">{activeResume.honestGap.explanation}</p>
@@ -141,11 +162,13 @@ export default function RedesignResumesPage() {
           {/* Centered 680px Paper Canvas (Section 4 & 8) */}
           <div className="lg:col-span-8 flex justify-center">
             <div
-              className={`w-full max-w-[680px] rounded-2xl border p-8 sm:p-12 shadow-xl transition-colors min-h-[900px] ${
-                isLight
-                  ? "bg-[#FAF9F6] border-[#E2E0D8] text-[#10243E]"
-                  : "bg-[#0A1220] border-[#182334] text-[#F3F4F6]"
-              }`}
+              className="w-full max-w-[680px] rounded-2xl border p-8 sm:p-12 shadow-2xl transition-all min-h-[900px]"
+              style={{
+                background: "#FBFAF9",
+                borderColor: isLight ? "#E2DDD4" : "#D5DFEA",
+                color: "#10243E",
+                boxShadow: "0 20px 45px -12px rgba(0, 0, 0, 0.25)",
+              }}
             >
               {/* Document Header */}
               <div className="border-b border-inherit pb-6 mb-6">
@@ -315,65 +338,86 @@ export default function RedesignResumesPage() {
           <div className="lg:col-span-4 space-y-6">
             {/* ATS Score Card */}
             <div
-              className={`rounded-2xl border p-5 transition-colors ${
-                isLight ? "bg-[#FAF9F6] border-[#E2E0D8]" : "bg-[#0A1220] border-[#182334]"
-              }`}
+              className="rounded-2xl border p-5 transition-colors"
+              style={{
+                background: isLight ? "#FBFAF9" : "#0C213A",
+                borderColor: isLight ? "#E5DFD5" : "#1B3654",
+              }}
             >
-              <div className="flex items-center justify-between pb-3 border-b border-inherit">
-                <span className="text-xs font-mono font-bold uppercase tracking-wider text-slate-400">
+              <div className="flex items-center justify-between pb-3 border-b"
+                style={{ borderColor: isLight ? "#E5DFD5" : "#182C44" }}
+              >
+                <span className="text-xs font-mono font-bold uppercase tracking-wider opacity-75">
                   ATS Parse Readiness
                 </span>
-                <span className="text-xs font-bold font-mono text-emerald-500">Verified</span>
+                <span className="text-xs font-bold font-mono text-[#059669]">Verified</span>
               </div>
 
               <div className="my-4 flex items-center justify-between">
                 <div>
-                  <div className="text-4xl font-extrabold font-display text-blue-500">
+                  <div className="text-4xl font-extrabold font-display"
+                    style={{ color: isLight ? "#123B7A" : "#9FC3F2" }}
+                  >
                     {activeResume.atsScore}%
                   </div>
-                  <p className="text-xs text-slate-500 mt-0.5">Overall parsing compatibility</p>
+                  <p className={`text-xs mt-0.5 ${isLight ? "text-[#52647A]" : "text-[#9FB0C7]"}`}>
+                    Overall parsing compatibility
+                  </p>
                 </div>
-                <div className="w-14 h-14 rounded-full border-4 border-blue-500 flex items-center justify-center font-bold text-sm font-mono text-blue-500">
+                <div
+                  className="w-14 h-14 rounded-full border-4 flex items-center justify-center font-bold text-sm font-mono"
+                  style={{
+                    borderColor: isLight ? "#123B7A" : "#5B9BFF",
+                    color: isLight ? "#123B7A" : "#9FC3F2",
+                  }}
+                >
                   {activeResume.atsScore}
                 </div>
               </div>
 
               <div className="space-y-2 text-xs">
-                <div className="flex items-center justify-between text-slate-400">
+                <div className="flex items-center justify-between opacity-80">
                   <span>Standard Header Structure</span>
-                  <CheckCircle2 size={14} className="text-emerald-500" />
+                  <CheckCircle2 size={14} className="text-[#059669]" />
                 </div>
-                <div className="flex items-center justify-between text-slate-400">
+                <div className="flex items-center justify-between opacity-80">
                   <span>Metrics in 100% of Bullets</span>
-                  <CheckCircle2 size={14} className="text-emerald-500" />
+                  <CheckCircle2 size={14} className="text-[#059669]" />
                 </div>
-                <div className="flex items-center justify-between text-slate-400">
+                <div className="flex items-center justify-between opacity-80">
                   <span>Chronological Consistency</span>
-                  <CheckCircle2 size={14} className="text-emerald-500" />
+                  <CheckCircle2 size={14} className="text-[#059669]" />
                 </div>
-                <div className="flex items-center justify-between text-slate-400">
+                <div className="flex items-center justify-between opacity-80">
                   <span>Keyword Density Alignment</span>
-                  <span className="font-mono font-semibold text-blue-400">89% Match</span>
+                  <span className="font-mono font-semibold text-[#5B9BFF]">89% Match</span>
                 </div>
               </div>
 
-              <div className="mt-5 pt-4 border-t border-inherit">
+              <div className="mt-5 pt-4 border-t" style={{ borderColor: isLight ? "#E5DFD5" : "#182C44" }}>
                 <Link
                   href="/redesign/review"
-                  className="w-full inline-flex items-center justify-center gap-2 py-2.5 rounded-xl bg-blue-600 text-white font-semibold text-xs hover:bg-blue-500 transition-colors shadow-sm"
+                  className="w-full inline-flex items-center justify-center gap-2 py-2.5 rounded-lg font-bold text-xs shadow-md transition-all hover:scale-[1.02]"
+                  style={{
+                    background: isLight ? "#123B7A" : "#9FC3F2",
+                    color: isLight ? "#FFFFFF" : "#071A33",
+                  }}
                 >
-                  Proceed to Review Gate <ArrowRight size={14} />
+                  <span>Proceed to Review Gate</span>
+                  <ArrowRight size={14} />
                 </Link>
               </div>
             </div>
 
             {/* Export Capabilities */}
             <div
-              className={`rounded-2xl border p-5 transition-colors ${
-                isLight ? "bg-[#FAF9F6] border-[#E2E0D8]" : "bg-[#0A1220] border-[#182334]"
-              }`}
+              className="rounded-2xl border p-5 transition-colors"
+              style={{
+                background: isLight ? "#FBFAF9" : "#0C213A",
+                borderColor: isLight ? "#E5DFD5" : "#1B3654",
+              }}
             >
-              <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-slate-400 mb-3">
+              <h3 className="text-xs font-mono font-bold uppercase tracking-wider opacity-75 mb-3">
                 Export ATS-Safe Formats
               </h3>
               <div className="space-y-2">
@@ -382,14 +426,15 @@ export default function RedesignResumesPage() {
                     <button
                       key={format}
                       onClick={() => {}}
-                      className={`w-full flex items-center justify-between p-2.5 rounded-xl border text-xs font-semibold transition-colors ${
-                        isLight
-                          ? "bg-white border-slate-200 text-slate-800 hover:bg-slate-100"
-                          : "bg-slate-900 border-slate-800 text-slate-200 hover:bg-slate-800"
-                      }`}
+                      className="w-full flex items-center justify-between p-2.5 rounded-xl border text-xs font-semibold transition-colors hover:scale-[1.01]"
+                      style={{
+                        background: isLight ? "#FFFFFF" : "#112642",
+                        borderColor: isLight ? "#E5DFD5" : "#1B3654",
+                        color: isLight ? "#10243E" : "#EFF5FF",
+                      }}
                     >
                       <span>{format}</span>
-                      <Download size={13} className="text-slate-400" />
+                      <Download size={13} className="opacity-60" />
                     </button>
                   )
                 )}

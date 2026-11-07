@@ -40,19 +40,30 @@ export default function RedesignJobsPage() {
           {jobMatches.map((job) => (
             <div
               key={job.id}
-              className={`rounded-2xl border p-6 transition-all ${
-                isLight ? "bg-[#FAF9F6] border-[#E2E0D8]" : "bg-[#0A1220] border-[#182334]"
-              }`}
+              className="rounded-2xl border p-6 transition-all"
+              style={{
+                background: isLight ? "#FBFAF9" : "#0C213A",
+                borderColor: isLight ? "#E5DFD5" : "#1B3654",
+              }}
             >
-              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-5 border-b border-inherit">
+              <div
+                className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-5 border-b"
+                style={{ borderColor: isLight ? "#E5DFD5" : "#182C44" }}
+              >
                 <div>
                   <div className="flex items-center gap-3">
-                    <h2 className="text-xl font-bold font-display">{job.roleTitle}</h2>
-                    <span className="text-xs font-mono font-bold text-blue-500 bg-blue-500/10 px-2.5 py-0.5 rounded-full">
+                    <h2 className="text-xl font-bold font-display tracking-tight">{job.roleTitle}</h2>
+                    <span
+                      className="text-xs font-mono font-bold px-2.5 py-0.5 rounded-full"
+                      style={{
+                        background: isLight ? "#E8EEF8" : "#163150",
+                        color: isLight ? "#123B7A" : "#9FC3F2",
+                      }}
+                    >
                       {job.companyName}
                     </span>
                   </div>
-                  <div className="flex flex-wrap items-center gap-4 text-xs text-slate-400 mt-2">
+                  <div className={`flex flex-wrap items-center gap-4 text-xs mt-2 ${isLight ? "text-[#52647A]" : "text-[#9FB0C7]"}`}>
                     <span className="flex items-center gap-1"><MapPin size={13} /> {job.location}</span>
                     <span className="flex items-center gap-1"><DollarSign size={13} /> {job.salaryRange}</span>
                     <span className="flex items-center gap-1"><Clock size={13} /> Posted {job.postedDaysAgo} days ago</span>
@@ -61,14 +72,18 @@ export default function RedesignJobsPage() {
 
                 <div className="flex items-center gap-4">
                   <div className="text-right">
-                    <div className="text-3xl font-extrabold font-display text-emerald-500">
+                    <div className="text-3xl font-extrabold font-display text-[#059669]">
                       {job.matchScore}%
                     </div>
-                    <span className="text-[10px] font-mono text-slate-500 uppercase">Calculated Fit</span>
+                    <span className="text-[10px] font-mono opacity-75 uppercase">Calculated Fit</span>
                   </div>
                   <Link
                     href="/redesign/review"
-                    className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-blue-600 text-white font-semibold text-xs hover:bg-blue-500 transition-colors shadow-sm"
+                    className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-lg font-bold text-xs shadow-md transition-all hover:scale-[1.02]"
+                    style={{
+                      background: isLight ? "#123B7A" : "#9FC3F2",
+                      color: isLight ? "#FFFFFF" : "#071A33",
+                    }}
                   >
                     <span>Tailor Resume</span>
                     <ArrowRight size={14} />
@@ -80,25 +95,27 @@ export default function RedesignJobsPage() {
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mt-5 items-start">
                 {/* Match Reasons */}
                 <div className="lg:col-span-7 space-y-2.5">
-                  <span className="text-xs font-mono font-bold uppercase tracking-wider text-slate-400">
+                  <span className="text-xs font-mono font-bold uppercase tracking-wider opacity-75">
                     Transparent Match Weighting
                   </span>
                   <div className="space-y-2">
                     {job.transparentMatchReasons.map((reason, idx) => (
                       <div
                         key={idx}
-                        className={`p-3 rounded-xl border text-xs flex items-start justify-between gap-3 ${
-                          isLight ? "bg-white border-slate-200" : "bg-slate-900/40 border-slate-800"
-                        }`}
+                        className="p-3 rounded-xl border text-xs flex items-start justify-between gap-3 transition-colors"
+                        style={{
+                          background: isLight ? "#FFFFFF" : "#112642",
+                          borderColor: isLight ? "#E5DFD5" : "#1B3654",
+                        }}
                       >
                         <div className="flex items-start gap-2">
-                          <CheckCircle2 size={14} className="text-emerald-500 shrink-0 mt-0.5" />
+                          <CheckCircle2 size={14} className="text-[#059669] shrink-0 mt-0.5" />
                           <div>
                             <span className="font-bold text-inherit">{reason.competency}</span>
-                            <p className="text-slate-500 mt-0.5">{reason.contribution}</p>
+                            <p className={`mt-0.5 ${isLight ? "text-[#52647A]" : "text-[#9FB0C7]"}`}>{reason.contribution}</p>
                           </div>
                         </div>
-                        <span className="font-mono font-bold text-blue-500 shrink-0">
+                        <span className="font-mono font-bold shrink-0" style={{ color: isLight ? "#123B7A" : "#9FC3F2" }}>
                           +{reason.weightPercent}%
                         </span>
                       </div>
@@ -108,17 +125,18 @@ export default function RedesignJobsPage() {
 
                 {/* Honest Gap */}
                 <div className="lg:col-span-5 space-y-2.5">
-                  <span className="text-xs font-mono font-bold uppercase tracking-wider text-amber-500 flex items-center gap-1">
+                  <span className="text-xs font-mono font-bold uppercase tracking-wider text-[#F59E0B] flex items-center gap-1">
                     <AlertTriangle size={13} /> Honest Competency Gap
                   </span>
                   <div
-                    className={`p-4 rounded-xl border text-xs space-y-2 ${
-                      isLight
-                        ? "bg-amber-50/70 border-amber-300 text-amber-950"
-                        : "bg-amber-950/20 border-amber-500/40 text-amber-200"
-                    }`}
+                    className="p-4 rounded-xl border text-xs space-y-2 transition-colors"
+                    style={{
+                      background: isLight ? "#FFF7ED" : "#1B221E",
+                      borderColor: isLight ? "#F59E0B" : "#B45309",
+                      color: isLight ? "#78350F" : "#FDE68A",
+                    }}
                   >
-                    <span className="font-bold font-mono text-amber-500">
+                    <span className="font-bold font-mono text-[#F59E0B]">
                       {job.honestGap.missingCompetency}
                     </span>
                     <p className="leading-relaxed opacity-90">{job.honestGap.recommendation}</p>

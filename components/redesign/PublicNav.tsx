@@ -14,20 +14,22 @@ export function PublicNav() {
 
   return (
     <header
-      className={`sticky top-0 z-50 w-full transition-colors duration-200 border-b ${
+      className={`sticky top-0 z-50 w-full transition-colors duration-200 border-b backdrop-blur-md ${
         isLight
-          ? "bg-[#FAF9F6]/95 border-[#E2E0D8] text-[#10243E]"
-          : "bg-[#05080F]/95 border-[#1A2638] text-white"
-      } backdrop-blur-md`}
+          ? "bg-[#FBFAF9]/95 border-[#E5DFD5] text-[#10243E]"
+          : "bg-[#061426]/95 border-[#182C44] text-[#EFF5FF]"
+      }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         {/* Brand Lockup */}
-        <Link href="/redesign" className="flex items-center gap-2 group">
-          <div className="w-8 h-8 rounded-lg overflow-hidden flex items-center justify-center bg-blue-600/10 border border-blue-500/20 group-hover:scale-105 transition-transform">
+        <Link href="/redesign" className="flex items-center gap-2.5 group">
+          <div className={`w-8 h-8 rounded-lg overflow-hidden flex items-center justify-center border shadow-sm group-hover:scale-105 transition-transform ${
+            isLight ? "bg-[#123B7A]/5 border-[#123B7A]/20" : "bg-[#132A4A] border-[#234168]"
+          }`}>
             <RoleSharpMark />
           </div>
-          <span className="font-bold text-lg tracking-tight font-display">
-            <span className="text-blue-500">R</span>ole<span className="text-blue-400">Sharp</span>
+          <span className="font-bold text-lg tracking-tight" style={{ fontFamily: "var(--font-display)" }}>
+            <span className={isLight ? "text-[#123B7A]" : "text-[#5B9BFF]"}>R</span>ole<span className={isLight ? "text-[#3B82F6]" : "text-[#9FC3F2]"}>Sharp</span>
           </span>
         </Link>
 
@@ -36,7 +38,7 @@ export function PublicNav() {
           <Link
             href="/redesign#features"
             className={`transition-colors ${
-              isLight ? "text-slate-600 hover:text-slate-900" : "text-slate-300 hover:text-white"
+              isLight ? "text-[#52647A] hover:text-[#10243E]" : "text-[#9FB0C7] hover:text-white"
             }`}
           >
             Capabilities
@@ -44,7 +46,7 @@ export function PublicNav() {
           <Link
             href="/redesign/tools"
             className={`transition-colors ${
-              isLight ? "text-slate-600 hover:text-slate-900" : "text-slate-300 hover:text-white"
+              isLight ? "text-[#52647A] hover:text-[#10243E]" : "text-[#9FB0C7] hover:text-white"
             }`}
           >
             Tools Directory
@@ -52,7 +54,7 @@ export function PublicNav() {
           <Link
             href="/redesign#pricing"
             className={`transition-colors ${
-              isLight ? "text-slate-600 hover:text-slate-900" : "text-slate-300 hover:text-white"
+              isLight ? "text-[#52647A] hover:text-[#10243E]" : "text-[#9FB0C7] hover:text-white"
             }`}
           >
             Pricing
@@ -60,7 +62,7 @@ export function PublicNav() {
           <Link
             href="/redesign#proof"
             className={`transition-colors ${
-              isLight ? "text-slate-600 hover:text-slate-900" : "text-slate-300 hover:text-white"
+              isLight ? "text-[#52647A] hover:text-[#10243E]" : "text-[#9FB0C7] hover:text-white"
             }`}
           >
             Evidence Review
@@ -74,8 +76,8 @@ export function PublicNav() {
             onClick={toggleTheme}
             className={`p-2 rounded-lg border transition-all ${
               isLight
-                ? "border-slate-200 text-slate-700 hover:bg-slate-100"
-                : "border-slate-800 text-slate-300 hover:bg-slate-800/80"
+                ? "border-[#E5DFD5] text-[#52647A] hover:bg-[#F3F0EB]"
+                : "border-[#182C44] text-[#9FB0C7] hover:bg-[#0E2138]"
             }`}
             aria-label={`Switch to ${isLight ? "Dark" : "Light"} theme`}
           >
@@ -87,7 +89,7 @@ export function PublicNav() {
             <Link
               href="/redesign"
               className={`text-sm font-semibold px-4 py-2 rounded-lg transition-colors ${
-                isLight ? "text-slate-700 hover:bg-slate-100" : "text-slate-200 hover:bg-slate-800"
+                isLight ? "text-[#52647A] hover:bg-[#F3F0EB]" : "text-[#9FB0C7] hover:bg-[#0E2138]"
               }`}
             >
               Back to Home
@@ -96,7 +98,7 @@ export function PublicNav() {
             <Link
               href="/redesign/login"
               className={`text-sm font-semibold px-4 py-2 rounded-lg transition-colors ${
-                isLight ? "text-slate-700 hover:bg-slate-100" : "text-slate-200 hover:bg-slate-800"
+                isLight ? "text-[#52647A] hover:bg-[#F3F0EB]" : "text-[#9FB0C7] hover:bg-[#0E2138]"
               }`}
             >
               Sign In
@@ -105,9 +107,14 @@ export function PublicNav() {
 
           <Link
             href="/redesign/dashboard"
-            className="hidden sm:inline-flex items-center gap-1.5 text-sm font-semibold px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-500 transition-colors shadow-sm"
+            className="hidden sm:inline-flex items-center gap-1.5 text-xs font-bold px-4 py-2 rounded-lg shadow-md transition-all hover:scale-[1.02]"
+            style={{
+              background: isLight ? "#123B7A" : "#9FC3F2",
+              color: isLight ? "#FFFFFF" : "#071A33",
+            }}
           >
-            Launch Workspace <ArrowRight size={15} />
+            <span>Launch Workspace</span>
+            <ArrowRight size={14} />
           </Link>
         </div>
       </div>
