@@ -35,21 +35,38 @@ export default function RedesignProfilePage() {
     <WorkspaceLayout>
       <div className="p-4 sm:p-6 lg:p-8 max-w-5xl mx-auto w-full space-y-8">
         {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-inherit">
+        <div
+          className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b transition-colors"
+          style={{ borderColor: isLight ? "#E2DDD4" : "#1B3654" }}
+        >
           <div>
-            <div className="flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-blue-500 mb-1">
-              <User size={14} /> Career Profile &amp; Grounded Evidence
+            <div
+              className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.12em] mb-1.5"
+              style={{ color: isLight ? "#123B7A" : "#9FC3F2" }}
+            >
+              <User size={14} />
+              <span>Career Profile &amp; Grounded Evidence</span>
             </div>
-            <h1 className="text-2xl sm:text-3xl font-bold font-display tracking-tight">
+            <h1
+              className="text-2xl sm:text-3xl font-bold tracking-tight"
+              style={{ fontFamily: "var(--font-display)" }}
+            >
               {user.name}
             </h1>
-            <p className={`text-xs mt-0.5 ${isLight ? "text-slate-600" : "text-slate-400"}`}>
-              {user.currentTitle} @ {user.currentCompany} • Target: {user.targetTitle} @ {user.targetCompany}
+            <p className="text-xs sm:text-sm mt-1" style={{ color: isLight ? "#52647A" : "#9FB0C7" }}>
+              {user.currentTitle} @ {user.currentCompany} · Target: {user.targetTitle} @ {user.targetCompany}
             </p>
           </div>
 
           <div className="flex items-center gap-2">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-bold bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">
+            <span
+              className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold"
+              style={{
+                background: isLight ? "#ECFDF5" : "#0D2A22",
+                color: isLight ? "#047857" : "#34D399",
+                border: "1px solid rgba(52, 211, 153, 0.2)",
+              }}
+            >
               <ShieldCheck size={14} /> 12 Verified Evidence Anchors
             </span>
           </div>
@@ -59,17 +76,20 @@ export default function RedesignProfilePage() {
         <div
           className="rounded-2xl border p-6 sm:p-8 transition-colors"
           style={{
-            background: isLight ? "#FBFAF9" : "#0C213A",
-            borderColor: isLight ? "#E5DFD5" : "#1B3654",
+            background: isLight ? "#FAF9F6" : "#0C213A",
+            borderColor: isLight ? "#E2DDD4" : "#1B3654",
+            boxShadow: isLight
+              ? "0 10px 25px -8px rgba(0, 0, 0, 0.05)"
+              : "0 16px 36px -12px rgba(0, 0, 0, 0.4)",
           }}
         >
           <div
             className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 pb-6 border-b"
-            style={{ borderColor: isLight ? "#E5DFD5" : "#182C44" }}
+            style={{ borderColor: isLight ? "#E2DDD4" : "#182C44" }}
           >
             <div className="flex items-center gap-4">
               <div
-                className="w-16 h-16 rounded-2xl flex items-center justify-center font-bold text-2xl shadow-md shrink-0"
+                className="w-16 h-16 rounded-2xl flex items-center justify-center font-bold text-2xl shadow-sm shrink-0"
                 style={{
                   background: isLight ? "#123B7A" : "#9FC3F2",
                   color: isLight ? "#FFFFFF" : "#071A33",
@@ -78,17 +98,24 @@ export default function RedesignProfilePage() {
                 AC
               </div>
               <div>
-                <h2 className="text-xl font-bold font-display tracking-tight">{user.name}</h2>
-                <p className="text-xs font-semibold" style={{ color: isLight ? "#123B7A" : "#9FC3F2" }}>{user.email}</p>
-                <p className={`text-xs mt-0.5 ${isLight ? "text-[#52647A]" : "text-[#9FB0C7]"}`}>
-                  {user.location} • {user.yearsOfExperience} Years Experience
+                <h2
+                  className="text-xl font-bold tracking-tight"
+                  style={{ fontFamily: "var(--font-display)", color: isLight ? "#10243E" : "#EFF5FF" }}
+                >
+                  {user.name}
+                </h2>
+                <p className="text-xs font-semibold" style={{ color: isLight ? "#123B7A" : "#9FC3F2" }}>
+                  {user.email}
+                </p>
+                <p className="text-xs mt-0.5" style={{ color: isLight ? "#52647A" : "#9FB0C7" }}>
+                  {user.location} · {user.yearsOfExperience} Years Verified Product Experience
                 </p>
               </div>
             </div>
 
             <Link
               href="/redesign/resumes"
-              className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-lg text-xs font-bold shadow-md transition-all hover:scale-[1.02] self-start sm:self-center"
+              className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-lg text-xs font-bold shadow-sm transition-all hover:translate-y-[-1px] self-start sm:self-center"
               style={{
                 background: isLight ? "#123B7A" : "#9FC3F2",
                 color: isLight ? "#FFFFFF" : "#071A33",
@@ -101,7 +128,10 @@ export default function RedesignProfilePage() {
 
           {/* 12 Verified Impact Metrics Grid */}
           <div className="mt-6">
-            <h3 className="text-xs font-mono font-bold uppercase tracking-wider opacity-75 mb-3">
+            <h3
+              className="text-xs font-bold uppercase tracking-wider mb-3.5"
+              style={{ color: isLight ? "#123B7A" : "#9FC3F2" }}
+            >
               Verified Impact Metrics (Grounded Evidence)
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
@@ -111,43 +141,50 @@ export default function RedesignProfilePage() {
                   className="p-3.5 rounded-xl border text-xs space-y-1 transition-colors"
                   style={{
                     background: isLight ? "#FFFFFF" : "#112642",
-                    borderColor: isLight ? "#E5DFD5" : "#1B3654",
+                    borderColor: isLight ? "#E2DDD4" : "#1B3654",
                   }}
                 >
-                  <div className="flex items-center gap-1.5 text-[#059669] font-bold font-mono">
+                  <div className="flex items-center gap-1.5 font-bold font-mono text-[#059669]">
                     <CheckCircle2 size={13} /> {item.metric}
                   </div>
-                  <p className={`text-[11px] leading-tight ${isLight ? "text-[#52647A]" : "text-[#9FB0C7]"}`}>{item.context}</p>
+                  <p className="text-[11px] leading-tight" style={{ color: isLight ? "#52647A" : "#9FB0C7" }}>
+                    {item.context}
+                  </p>
                 </div>
               ))}
             </div>
           </div>
 
           {/* Skills & Single Input Gate */}
-          <div className="mt-8 pt-6 border-t border-inherit">
+          <div className="mt-8 pt-6 border-t" style={{ borderColor: isLight ? "#E2DDD4" : "#182C44" }}>
             <div className="flex items-center justify-between mb-3">
-              <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-slate-400">
+              <h3
+                className="text-xs font-bold uppercase tracking-wider"
+                style={{ color: isLight ? "#123B7A" : "#9FC3F2" }}
+              >
                 Core Competencies
               </h3>
               {!showSkillInput && (
                 <button
                   onClick={() => setShowSkillInput(true)}
-                  className="text-xs font-semibold text-blue-500 hover:text-blue-400 flex items-center gap-1"
+                  className="text-xs font-semibold hover:underline flex items-center gap-1"
+                  style={{ color: isLight ? "#123B7A" : "#9FC3F2" }}
                 >
                   <Plus size={13} /> Add skill
                 </button>
               )}
             </div>
 
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-1.5">
               {skills.map((skill) => (
                 <span
                   key={skill}
-                  className={`text-xs px-3 py-1.5 rounded-lg border font-medium ${
-                    isLight
-                      ? "bg-white border-slate-200 text-slate-800"
-                      : "bg-slate-900 border-slate-800 text-slate-200"
-                  }`}
+                  className="text-xs px-2.5 py-1 rounded-lg border font-medium transition-colors"
+                  style={{
+                    background: isLight ? "#FFFFFF" : "#112642",
+                    borderColor: isLight ? "#E2DDD4" : "#1B3654",
+                    color: isLight ? "#10243E" : "#EFF5FF",
+                  }}
                 >
                   {skill}
                 </span>
@@ -155,55 +192,47 @@ export default function RedesignProfilePage() {
             </div>
 
             {showSkillInput && (
-              <form onSubmit={handleAddSkill} className="mt-3 flex items-center gap-2 max-w-sm">
+              <form onSubmit={handleAddSkill} className="mt-3 flex items-center gap-2">
                 <input
                   type="text"
-                  placeholder="e.g. Telemetry Instrumentation"
+                  placeholder="e.g. Distributed Tracing"
                   value={newSkill}
                   onChange={(e) => setNewSkill(e.target.value)}
-                  className={`flex-1 px-3 py-1.5 rounded-lg border text-xs font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                    isLight
-                      ? "bg-white border-slate-300 text-slate-900"
-                      : "bg-slate-900 border-slate-800 text-white"
-                  }`}
+                  className="px-3 py-1.5 rounded-lg border text-xs font-medium focus:outline-none"
+                  style={{
+                    background: isLight ? "#FFFFFF" : "#112642",
+                    borderColor: isLight ? "#D5DFEA" : "#1B3654",
+                    color: isLight ? "#10243E" : "#EFF5FF",
+                  }}
                 />
                 <button
                   type="submit"
-                  className="px-3 py-1.5 rounded-lg bg-blue-600 text-white text-xs font-semibold hover:bg-blue-500"
+                  className="px-3.5 py-1.5 rounded-lg text-white text-xs font-bold"
+                  style={{
+                    background: isLight ? "#123B7A" : "#9FC3F2",
+                    color: isLight ? "#FFFFFF" : "#071A33",
+                  }}
                 >
                   Add
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setShowSkillInput(false)}
-                  className="px-2 text-xs text-slate-400 hover:text-slate-200"
-                >
-                  Cancel
                 </button>
               </form>
             )}
           </div>
 
           {/* Education */}
-          <div className="mt-8 pt-6 border-t border-inherit">
-            <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-slate-400 mb-3">
-              Education &amp; Degrees
-            </h3>
-            <div
-              className={`p-4 rounded-xl border flex items-center justify-between text-xs ${
-                isLight ? "bg-white border-slate-200" : "bg-slate-900/40 border-slate-800"
-              }`}
+          <div className="mt-8 pt-6 border-t" style={{ borderColor: isLight ? "#E2DDD4" : "#182C44" }}>
+            <h3
+              className="text-xs font-bold uppercase tracking-wider mb-2"
+              style={{ color: isLight ? "#123B7A" : "#9FC3F2" }}
             >
-              <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-lg bg-blue-500/10 text-blue-500 flex items-center justify-center">
-                  <GraduationCap size={18} />
-                </div>
-                <div>
-                  <p className="font-bold text-inherit">{user.education.degree} in {user.education.field}</p>
-                  <p className="text-slate-400">{user.education.institution}</p>
-                </div>
-              </div>
-              <span className="font-mono font-semibold text-slate-500">Class of {user.education.graduationYear}</span>
+              Education &amp; Credentials
+            </h3>
+            <div className="flex items-baseline justify-between text-xs">
+              <span className="font-semibold flex items-center gap-2" style={{ color: isLight ? "#10243E" : "#EFF5FF" }}>
+                <GraduationCap size={15} style={{ color: isLight ? "#123B7A" : "#9FC3F2" }} />
+                <span>Bachelor of Science, Information Systems · Northbridge University</span>
+              </span>
+              <span style={{ color: isLight ? "#52647A" : "#9FB0C7" }}>2021</span>
             </div>
           </div>
         </div>

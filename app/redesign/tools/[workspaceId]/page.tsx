@@ -33,7 +33,7 @@ const DETAILS: Record<string, WorkspaceDetail> = {
     id: "resume-studio",
     title: "Resume Studio",
     tagline: "Focused single-document resume authoring canvas",
-    desc: "Centered 680px paper canvas with live ATS evaluation against 24 common applicant tracking engines.",
+    desc: "Single-document workspace optimized for ATS readability, evidence grounding, and high-impact metric presentation.",
     icon: FileText,
     primaryAction: { label: "Launch Resume Canvas", href: "/redesign/resumes" },
     features: [
@@ -100,57 +100,58 @@ const DETAILS: Record<string, WorkspaceDetail> = {
   },
   "interview-practice": {
     id: "interview-practice",
-    title: "Interview Practice",
-    tagline: "Rehearsal simulator and question breakdown",
-    desc: "Scenario-based prep with instant critique on STAR structure and metric citation for product management interviews.",
+    title: "Interview Practice Workspace",
+    tagline: "Voice AI mock interviews and STAR method rehearsal",
+    desc: "Scenario-based interview simulator with real-time feedback on structure, STAR method adherence, and metric citation.",
     icon: HelpCircle,
-    primaryAction: { label: "Begin Mock Session", href: "/redesign/dashboard" },
+    primaryAction: { label: "Start Live Simulation", href: "/redesign/resumes" },
     features: [
-      "Horizon Analytics Round 2 Case Study specific scenarios",
-      "STAR framework structure guidance (Situation, Task, Action, Result)",
-      "Follow-up thank you note generator with specific topic callbacks",
+      "Role-tailored question pools matching target seniority level",
+      "STAR framework structuring guidance for executive depth",
+      "Verbal pause, filler word, and delivery confidence telemetry",
     ],
     tools: [
-      { name: "Interview Rehearsal Simulator", desc: "Mock session for case study round", href: "/redesign/dashboard", status: "Upcoming Nov 10" },
-      { name: "Thank You Note Generator", desc: "Topic callback thank-you drafts", href: "/redesign/dashboard", status: "Ready" },
+      { name: "Voice AI Simulator", desc: "Interactive behavioral mock interviews", href: "/redesign/resumes", status: "Active" },
+      { name: "Question Bank", desc: "Top 50 vetted questions for Senior PMs", href: "/redesign/resumes", status: "Active" },
     ],
   },
   "salary-offers": {
     id: "salary-offers",
-    title: "Salary & Offers",
-    tagline: "Compensation benchmarks and negotiation scripts",
-    desc: "Real-world Seattle and Remote compensation data with total reward modeling (base, bonus, equity vest schedules).",
+    title: "Salary & Offers Workspace",
+    tagline: "Compensation benchmarks and negotiation strategy",
+    desc: "Market compensation percentiles and data-backed counter-offer scripts for confident negotiation.",
     icon: DollarSign,
-    primaryAction: { label: "Explore PM Comp Bands", href: "/redesign/jobs" },
+    primaryAction: { label: "Explore Comp Bands", href: "/redesign/jobs" },
     features: [
-      "Verified Seattle Senior PM comp range ($165k - $195k base)",
-      "Total compensation calculator with 4-year equity vesting schedules",
-      "Word-for-word counter-offer scripts for salary and remote flexibility",
+      "P25, P50, and P75 compensation bands across major tech hubs",
+      "Equity grant valuation models and tax-adjusted scenarios",
+      "Field-tested counter-offer scripts and email phrasing",
     ],
     tools: [
-      { name: "Salary Benchmark Explorer", desc: "P25, P50, and P75 comp bands", href: "/redesign/jobs", status: "Active" },
-      { name: "Offer Comparison Calculator", desc: "Base + bonus + equity modeling", href: "/redesign/jobs", status: "Active" },
+      { name: "Comp Benchmark", desc: "Seattle & Remote PM salary explorer", href: "/redesign/jobs", status: "Active" },
+      { name: "Offer Evaluator", desc: "Total comp calculator with bonus & equity", href: "/redesign/jobs", status: "Active" },
     ],
   },
 };
 
-export default function RedesignWorkspaceDetailPage({
+export default function RedesignToolWorkspaceDetailPage({
   params,
 }: {
   params: Promise<{ workspaceId: string }>;
 }) {
-  const resolvedParams = use(params);
-  const targetId = resolveWorkspaceSlug(resolvedParams.workspaceId);
-  const detail = DETAILS[targetId];
+  const { workspaceId } = use(params);
   const { theme } = useRedesignStore();
   const isLight = theme === "light";
+
+  const resolvedSlug = resolveWorkspaceSlug(workspaceId);
+  const detail = DETAILS[resolvedSlug] || DETAILS[workspaceId];
 
   if (!detail) {
     return (
       <WorkspaceLayout>
         <div className="p-8 max-w-4xl mx-auto text-center">
-          <p className="text-sm text-slate-400">Workspace not found.</p>
-          <Link href="/redesign/tools" className="mt-4 text-blue-500 font-semibold inline-block">
+          <p className="text-sm" style={{ color: isLight ? "#52647A" : "#9FB0C7" }}>Workspace not found.</p>
+          <Link href="/redesign/tools" className="mt-4 font-semibold inline-block hover:underline" style={{ color: isLight ? "#123B7A" : "#9FC3F2" }}>
             Back to Tools Hub
           </Link>
         </div>
@@ -166,7 +167,8 @@ export default function RedesignWorkspaceDetailPage({
         {/* Back Link */}
         <Link
           href="/redesign/tools"
-          className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-500 hover:text-blue-500 transition-colors"
+          className="inline-flex items-center gap-1.5 text-xs font-semibold hover:underline transition-colors"
+          style={{ color: isLight ? "#52647A" : "#9FB0C7" }}
         >
           <ChevronLeft size={16} /> Back to all Tool Workspaces
         </Link>
@@ -175,13 +177,16 @@ export default function RedesignWorkspaceDetailPage({
         <div
           className="rounded-2xl border p-6 sm:p-8 transition-colors"
           style={{
-            background: isLight ? "#FBFAF9" : "#0C213A",
-            borderColor: isLight ? "#E5DFD5" : "#1B3654",
+            background: isLight ? "#FAF9F6" : "#0C213A",
+            borderColor: isLight ? "#E2DDD4" : "#1B3654",
+            boxShadow: isLight
+              ? "0 10px 25px -8px rgba(0, 0, 0, 0.05)"
+              : "0 16px 36px -12px rgba(0, 0, 0, 0.4)",
           }}
         >
           <div
             className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 pb-6 border-b"
-            style={{ borderColor: isLight ? "#E5DFD5" : "#182C44" }}
+            style={{ borderColor: isLight ? "#E2DDD4" : "#182C44" }}
           >
             <div className="flex items-start gap-4">
               <div
@@ -195,13 +200,18 @@ export default function RedesignWorkspaceDetailPage({
               </div>
               <div>
                 <span
-                  className="text-xs font-mono font-bold uppercase tracking-wider"
+                  className="text-[11px] font-bold uppercase tracking-[0.12em]"
                   style={{ color: isLight ? "#123B7A" : "#9FC3F2" }}
                 >
-                  Task Workspace
+                  Task Suite
                 </span>
-                <h1 className="text-2xl sm:text-3xl font-bold font-display tracking-tight">{detail.title}</h1>
-                <p className={`text-xs sm:text-sm mt-1 max-w-2xl ${isLight ? "text-[#52647A]" : "text-[#9FB0C7]"}`}>
+                <h1
+                  className="text-2xl sm:text-3xl font-bold tracking-tight mt-1"
+                  style={{ fontFamily: "var(--font-display)", color: isLight ? "#10243E" : "#EFF5FF" }}
+                >
+                  {detail.title}
+                </h1>
+                <p className="text-xs sm:text-sm mt-1 max-w-2xl" style={{ color: isLight ? "#52647A" : "#9FB0C7" }}>
                   {detail.desc}
                 </p>
               </div>
@@ -209,7 +219,7 @@ export default function RedesignWorkspaceDetailPage({
 
             <Link
               href={detail.primaryAction.href}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-bold shadow-md transition-all hover:scale-[1.02] self-start sm:self-center shrink-0"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-bold shadow-sm transition-all hover:translate-y-[-1px] self-start sm:self-center shrink-0"
               style={{
                 background: isLight ? "#123B7A" : "#9FC3F2",
                 color: isLight ? "#FFFFFF" : "#071A33",
@@ -222,21 +232,24 @@ export default function RedesignWorkspaceDetailPage({
 
           {/* Key Capabilities */}
           <div className="mt-6">
-            <h2 className="text-xs font-mono font-bold uppercase tracking-wider opacity-75 mb-3">
+            <h2
+              className="text-xs font-bold uppercase tracking-wider mb-3.5"
+              style={{ color: isLight ? "#123B7A" : "#9FC3F2" }}
+            >
               Core Capabilities
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
               {detail.features.map((feature, i) => (
                 <div
                   key={i}
-                  className="p-3.5 rounded-xl border text-xs leading-relaxed flex items-start gap-2 transition-colors"
+                  className="p-3.5 rounded-xl border text-xs leading-relaxed flex items-start gap-2.5 transition-colors"
                   style={{
                     background: isLight ? "#FFFFFF" : "#112642",
-                    borderColor: isLight ? "#E5DFD5" : "#1B3654",
+                    borderColor: isLight ? "#E2DDD4" : "#1B3654",
                   }}
                 >
                   <CheckCircle2 size={15} className="text-[#059669] shrink-0 mt-0.5" />
-                  <span>{feature}</span>
+                  <span style={{ color: isLight ? "#10243E" : "#EFF5FF" }}>{feature}</span>
                 </div>
               ))}
             </div>
@@ -245,20 +258,28 @@ export default function RedesignWorkspaceDetailPage({
 
         {/* Tools in this Workspace */}
         <div className="space-y-4">
-          <h2 className="text-lg font-bold font-display tracking-tight">Specialized Tools &amp; Utilities</h2>
+          <h2
+            className="text-lg font-bold tracking-tight"
+            style={{ fontFamily: "var(--font-display)", color: isLight ? "#10243E" : "#EFF5FF" }}
+          >
+            Specialized Tools &amp; Utilities
+          </h2>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             {detail.tools.map((t) => (
               <Link
                 key={t.name}
                 href={t.href}
-                className="p-4 rounded-xl border transition-all hover:scale-[1.01] group"
+                className="p-4 rounded-xl border transition-all hover:translate-y-[-1px] group block"
                 style={{
-                  background: isLight ? "#FBFAF9" : "#0C213A",
-                  borderColor: isLight ? "#E5DFD5" : "#1B3654",
+                  background: isLight ? "#FAF9F6" : "#0C213A",
+                  borderColor: isLight ? "#E2DDD4" : "#1B3654",
                 }}
               >
                 <div className="flex items-center justify-between mb-2">
-                  <span className="text-sm font-bold font-display group-hover:text-blue-500 transition-colors">
+                  <span
+                    className="text-sm font-bold transition-colors"
+                    style={{ color: isLight ? "#10243E" : "#EFF5FF" }}
+                  >
                     {t.name}
                   </span>
                   <span
@@ -271,7 +292,9 @@ export default function RedesignWorkspaceDetailPage({
                     {t.status}
                   </span>
                 </div>
-                <p className={`text-xs leading-relaxed mb-3 ${isLight ? "text-[#52647A]" : "text-[#9FB0C7]"}`}>{t.desc}</p>
+                <p className="text-xs leading-relaxed mb-3" style={{ color: isLight ? "#52647A" : "#9FB0C7" }}>
+                  {t.desc}
+                </p>
                 <span
                   className="text-xs font-semibold flex items-center gap-1 group-hover:translate-x-0.5 transition-transform"
                   style={{ color: isLight ? "#123B7A" : "#9FC3F2" }}

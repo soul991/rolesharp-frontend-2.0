@@ -78,7 +78,7 @@ export function WorkspaceLayout({ children }: { children: ReactNode }) {
               <RoleSharpMark />
             </div>
             <span className="font-bold text-lg tracking-tight" style={{ fontFamily: "var(--font-display)" }}>
-              <span className={isLight ? "text-[#123B7A]" : "text-[#5B9BFF]"}>R</span>ole<span className={isLight ? "text-[#3B82F6]" : "text-[#9FC3F2]"}>Sharp</span>
+              <span className={isLight ? "text-[#123B7A]" : "text-[#9FC3F2]"}>R</span>oleSharp
             </span>
           </Link>
           <span
@@ -137,8 +137,8 @@ export function WorkspaceLayout({ children }: { children: ReactNode }) {
         {/* Labeled Primary Destinations */}
         <nav className="flex-1 px-3 space-y-1 overflow-y-auto" aria-label="Primary Navigation">
           <p
-            className={`px-3 py-1.5 text-[10px] font-mono uppercase tracking-wider font-semibold ${
-              isLight ? "text-[#6B7280]" : "text-[#9FB0C7]"
+            className={`px-3 py-2 text-[11px] font-bold uppercase tracking-wider ${
+              isLight ? "text-[#52647A]" : "text-[#8FA6C1]"
             }`}
           >
             Workspace
@@ -150,11 +150,11 @@ export function WorkspaceLayout({ children }: { children: ReactNode }) {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`flex items-center justify-between px-3 py-2 rounded-lg text-sm font-medium transition-all group ${
+                className={`flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-medium transition-all group ${
                   active
                     ? isLight
                       ? "bg-[#EAF2FF] text-[#123B7A] font-semibold shadow-sm border-l-3 border-[#123B7A]"
-                      : "bg-[#112642] text-[#9FC3F2] font-semibold border-l-3 border-[#5B9BFF]"
+                      : "bg-[#112642] text-[#9FC3F2] font-semibold border-l-3 border-[#9FC3F2]"
                     : isLight
                     ? "text-[#52647A] hover:text-[#10243E] hover:bg-[#F0ECE6]"
                     : "text-[#9FB0C7] hover:text-[#F4F7FB] hover:bg-[#0E2138]"
@@ -167,7 +167,7 @@ export function WorkspaceLayout({ children }: { children: ReactNode }) {
                       active
                         ? isLight
                           ? "text-[#123B7A]"
-                          : "text-[#5B9BFF]"
+                          : "text-[#9FC3F2]"
                         : isLight
                         ? "text-[#64748B] group-hover:text-[#10243E]"
                         : "text-[#718299] group-hover:text-[#F4F7FB]"
@@ -177,11 +177,11 @@ export function WorkspaceLayout({ children }: { children: ReactNode }) {
                 </div>
                 {item.badge && (
                   <span
-                    className={`text-[10px] font-mono px-1.5 py-0.5 rounded font-medium ${
+                    className={`text-[11px] px-2 py-0.5 rounded-full font-medium ${
                       active
                         ? isLight
                           ? "bg-[#123B7A]/10 text-[#123B7A] font-semibold"
-                          : "bg-[#5B9BFF]/20 text-[#9FC3F2]"
+                          : "bg-[#9FC3F2]/20 text-[#9FC3F2]"
                         : isLight
                         ? "bg-[#EFECE6] text-[#52647A]"
                         : "bg-[#132A4A] text-[#9FB0C7]"
@@ -196,7 +196,7 @@ export function WorkspaceLayout({ children }: { children: ReactNode }) {
         </nav>
 
         {/* Bottom Utility Controls */}
-        <div className="p-3 border-t border-inherit space-y-1">
+        <div className="p-3 pb-16 border-t border-inherit space-y-1">
           {/* Theme Toggle */}
           <button
             onClick={toggleTheme}
@@ -210,7 +210,7 @@ export function WorkspaceLayout({ children }: { children: ReactNode }) {
               {isLight ? <Moon size={15} /> : <Sun size={15} />}
               <span>Appearance</span>
             </span>
-            <span className="font-mono uppercase text-[10px] font-semibold">
+            <span className="text-[11px] font-semibold">
               {isLight ? "Warm Light" : "Dark"}
             </span>
           </button>
@@ -259,7 +259,7 @@ export function WorkspaceLayout({ children }: { children: ReactNode }) {
             <RoleSharpMark />
           </div>
           <span className="font-bold text-base tracking-tight" style={{ fontFamily: "var(--font-display)" }}>
-            <span className={isLight ? "text-[#123B7A]" : "text-[#5B9BFF]"}>R</span>ole<span className={isLight ? "text-[#3B82F6]" : "text-[#9FC3F2]"}>Sharp</span>
+            <span className={isLight ? "text-[#123B7A]" : "text-[#9FC3F2]"}>R</span>oleSharp
           </span>
         </Link>
 

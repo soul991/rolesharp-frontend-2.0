@@ -27,8 +27,8 @@ export default function RedesignLoginPage() {
         <div
           className="w-full max-w-md rounded-2xl border p-8 shadow-2xl transition-all"
           style={{
-            background: isLight ? "#FBFAF9" : "#0C213A",
-            borderColor: isLight ? "#E5DFD5" : "#1B3654",
+            background: isLight ? "#FAF9F6" : "#0C213A",
+            borderColor: isLight ? "#E2DDD4" : "#1B3654",
           }}
         >
           {/* Brand & Heading */}
@@ -42,10 +42,13 @@ export default function RedesignLoginPage() {
             >
               <RoleSharpMark />
             </div>
-            <h1 className="text-2xl font-bold font-display tracking-tight">
+            <h1
+              className="text-2xl font-bold tracking-tight"
+              style={{ fontFamily: "var(--font-display)" }}
+            >
               Sign in to RoleSharp
             </h1>
-            <p className={`text-xs mt-1 ${isLight ? "text-[#52647A]" : "text-[#9FB0C7]"}`}>
+            <p className="text-xs mt-1" style={{ color: isLight ? "#52647A" : "#9FB0C7" }}>
               Evidence-based career workspace
             </p>
           </div>
@@ -54,10 +57,10 @@ export default function RedesignLoginPage() {
           <div className="mb-6">
             <button
               onClick={handleDemoSignIn}
-              className="w-full flex items-center justify-between p-4 rounded-xl border-2 text-left transition-all hover:scale-[1.01] group"
+              className="w-full flex items-center justify-between p-4 rounded-xl border-2 text-left transition-all hover:translate-y-[-1px] group"
               style={{
                 background: isLight ? "#EFF6FF" : "#112642",
-                borderColor: isLight ? "#123B7A" : "#5B9BFF",
+                borderColor: isLight ? "#123B7A" : "#9FC3F2",
               }}
             >
               <div className="flex items-center gap-3">
@@ -77,8 +80,8 @@ export default function RedesignLoginPage() {
                   >
                     <UserCheck size={15} /> Continue as {user.name}
                   </div>
-                  <p className={`text-xs ${isLight ? "text-[#52647A]" : "text-[#9FB0C7]"}`}>
-                    {user.targetTitle} • {user.creditsRemaining} credits
+                  <p className="text-xs" style={{ color: isLight ? "#52647A" : "#9FB0C7" }}>
+                    {user.targetTitle} · {user.creditsRemaining} credits
                   </p>
                 </div>
               </div>
@@ -88,19 +91,19 @@ export default function RedesignLoginPage() {
                 style={{ color: isLight ? "#123B7A" : "#9FC3F2" }}
               />
             </button>
-            <p className="text-[11px] text-center opacity-75 mt-2">
-              Recommended for evaluation: Loads full demo dataset with 4 resumes &amp; 6 applications.
+            <p className="text-[11px] text-center opacity-75 mt-2" style={{ color: isLight ? "#52647A" : "#9FB0C7" }}>
+              Recommended for evaluation: Loads full demo dataset with 4 resumes &amp; 5 applications.
             </p>
           </div>
 
           <div className="relative my-6 text-center">
             <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t" style={{ borderColor: isLight ? "#E5DFD5" : "#182C44" }} />
+              <div className="w-full border-t" style={{ borderColor: isLight ? "#E2DDD4" : "#182C44" }} />
             </div>
             <span
-              className="relative px-3 text-[11px] font-mono uppercase tracking-wider"
+              className="relative px-3 text-[11px] font-bold uppercase tracking-wider"
               style={{
-                background: isLight ? "#FBFAF9" : "#0C213A",
+                background: isLight ? "#FAF9F6" : "#0C213A",
                 color: isLight ? "#52647A" : "#9FB0C7",
               }}
             >
@@ -123,10 +126,10 @@ export default function RedesignLoginPage() {
               <input
                 type="email"
                 defaultValue={user.email}
-                className="w-full px-3.5 py-2.5 rounded-xl border text-sm font-medium focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3.5 py-2.5 rounded-xl border text-sm font-medium focus:outline-none"
                 style={{
                   background: isLight ? "#FFFFFF" : "#112642",
-                  borderColor: isLight ? "#E5DFD5" : "#1B3654",
+                  borderColor: isLight ? "#E2DDD4" : "#1B3654",
                   color: isLight ? "#10243E" : "#EFF5FF",
                 }}
               />
@@ -139,10 +142,10 @@ export default function RedesignLoginPage() {
               <input
                 type="password"
                 defaultValue="••••••••••••"
-                className="w-full px-3.5 py-2.5 rounded-xl border text-sm font-medium focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3.5 py-2.5 rounded-xl border text-sm font-medium focus:outline-none"
                 style={{
                   background: isLight ? "#FFFFFF" : "#112642",
-                  borderColor: isLight ? "#E5DFD5" : "#1B3654",
+                  borderColor: isLight ? "#E2DDD4" : "#1B3654",
                   color: isLight ? "#10243E" : "#EFF5FF",
                 }}
               />
@@ -150,7 +153,7 @@ export default function RedesignLoginPage() {
 
             <button
               type="submit"
-              className="w-full py-3 rounded-lg font-bold text-sm shadow-md transition-all hover:scale-[1.01]"
+              className="w-full py-3 rounded-lg font-bold text-sm shadow-sm transition-all hover:translate-y-[-1px]"
               style={{
                 background: isLight ? "#123B7A" : "#9FC3F2",
                 color: isLight ? "#FFFFFF" : "#071A33",
@@ -162,11 +165,11 @@ export default function RedesignLoginPage() {
 
           {/* Security guarantee */}
           <div
-            className="mt-6 pt-4 border-t flex items-center justify-center gap-2 text-[11px] opacity-75 font-mono"
-            style={{ borderColor: isLight ? "#E5DFD5" : "#182C44" }}
+            className="mt-6 pt-4 border-t flex items-center justify-center gap-2 text-[11px]"
+            style={{ borderColor: isLight ? "#E2DDD4" : "#182C44", color: isLight ? "#52647A" : "#9FB0C7" }}
           >
             <Shield size={13} className="text-[#059669]" />
-            <span>Encrypted local session • Zero tracking telemetry</span>
+            <span>Encrypted local session · Zero tracking telemetry</span>
           </div>
         </div>
       </main>
