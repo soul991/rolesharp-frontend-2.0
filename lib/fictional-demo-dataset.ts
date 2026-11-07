@@ -390,7 +390,7 @@ export const AVERY_JOB_MATCHES: DemoJobMatch[] = [
       { competency: "Roadmap Ownership", contribution: "Direct match: Quarterly OKR prioritization with engineering/design", weightPercent: 20 },
     ],
     honestGap: {
-      missingCompetency: "Kafka Streaming Event Telemetry",
+      missingCompetency: "Kafka Event Stream Telemetry",
       recommendation: "Acknowledge in review modal; highlight strong PostHog/Mixpanel & relational SQL foundation as equivalent telemetry grounding.",
     },
   },

@@ -16,9 +16,11 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
   const admin = pathname?.startsWith("/admin");
   const embed = pathname?.startsWith("/embed/");
   const frontendPrototype = pathname?.startsWith("/dev/frontend-review");
+  const redesign = pathname?.startsWith("/redesign");
   if (admin) return <ToastProvider>{children}</ToastProvider>;
   if (embed) return children;
   if (frontendPrototype) return <ToastProvider>{children}</ToastProvider>;
+  if (redesign) return <ToastProvider>{children}</ToastProvider>;
   return (
     <ToastProvider>
       <SessionProvider>

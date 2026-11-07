@@ -3234,7 +3234,7 @@ function renderToolsView(bgCard: string, borderRule: string) {
             <span className="text-[10px] text-slate-500 block mt-1">Safe local parser simulation</span>
             <button
               type="button"
-              onClick={() => alert("Scanned Avery Chen Master Base: 94/100 ATS Score. Zero parsing errors detected.")}
+              onClick={() => {}}
               className="mt-3 rounded bg-blue-600 px-3 py-1.5 text-xs font-bold text-white hover:bg-blue-700"
             >
               Scan Sample Document
@@ -3274,7 +3274,7 @@ function renderToolsView(bgCard: string, borderRule: string) {
             <button
               key={idx}
               type="button"
-              onClick={() => alert(`Opening standalone tool: ${tool}`)}
+              onClick={() => {}}
               className="rounded-lg border border-slate-700/60 bg-slate-800/40 p-2.5 text-left hover:border-blue-500 hover:bg-slate-800 transition-colors"
             >
               <span className="font-semibold text-slate-200 block text-[11px]">{tool}</span>
